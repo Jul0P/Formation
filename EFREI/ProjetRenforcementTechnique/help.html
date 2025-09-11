@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Multitask Game - Aide</title>
+        <link rel="stylesheet" href="/src/styles/global.css">
+        <link rel="stylesheet" href="/src/styles/home.css">
+        <link rel="stylesheet" href="/src/styles/help.css">
+    </head>
+    <body>
+        <nav class="navbar">
+            <div class="nav-container">
+                <h1 class="nav-title"><a href="./" style="color: inherit; text-decoration: none;">Multitask Game</a></h1>
+                <ul class="nav-links">
+                    <li><a href="./">Accueil</a></li>
+                    <li><a href="./game.html">Jouer</a></li>
+                    <li><a href="./help.html" class="active">Aide</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <main class="home-container">
+            <section class="hero">
+                <h2 class="hero-title">Comment Jouer</h2>
+                
+                <div class="card">
+                    <h3>Règles du Jeu</h3>
+                    <p>Le Multitask Game est un jeu de survie où vous devez gérer plusieurs mini-jeux simultanément. Votre objectif est de survivre le plus longtemps possible et d'obtenir le meilleur score.</p>
+                    
+                    <h4>Progression</h4>
+                    <ul>
+                        <li><strong>0-24 points :</strong> Jeu Dodge (Esquive) uniquement</li>
+                        <li><strong>25-49 points :</strong> 2 jeux actifs (Dodge + Jeu 2)</li>
+                        <li><strong>50-74 points :</strong> 3 jeux actifs (Dodge + Jeu 2 + Jeu 3)</li>
+                        <li><strong>75+ points :</strong> 4 jeux actifs (Mode Chaos Complet)</li>
+                    </ul>
+
+                    <h4>Vies et Game Over</h4>
+                    <p>Vous commencez avec 3 vies. Perdre toutes vos vies entraîne un Game Over. Votre score est sauvegardé dans le classement si il figure parmi les 10 meilleurs.</p>
+                </div>
+
+                <div class="card">
+                    <h3>Contrôles</h3>
+                    
+                    <h4>Jeu Dodge (Esquive)</h4>
+                    <ul>
+                        <li><strong>Flèche Gauche (←) :</strong> Déplacer vers la gauche</li>
+                        <li><strong>Flèche Droite (→) :</strong> Déplacer vers la droite</li>
+                    </ul>
+                    
+                    <h4>Contrôles Généraux</h4>
+                    <ul>
+                        <li><strong>N'importe quelle touche :</strong> Commencer une nouvelle partie</li>
+                        <li><strong>Pause :</strong> Le jeu se met automatiquement en pause si vous changez d'onglet</li>
+                    </ul>
+
+                    <p class="note"><strong>Note :</strong> Les contrôles pour les jeux 2, 3 et 4 seront dévoilés lorsque vous les débloquerez !</p>
+                </div>
+
+                <div class="hero-buttons">
+                    <a href="./game.html" class="button button-primary">Commencer à Jouer</a>
+                    <a href="./" class="button button-secondary">Retour à l'Accueil</a>
+                </div>
+            </section>
+        </main>
+
+        <script type="module" src="/src/main.ts"></script>
+    </body>
+</html>
