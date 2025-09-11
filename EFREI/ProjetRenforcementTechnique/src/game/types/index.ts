@@ -24,6 +24,7 @@ export interface IGameConfig {
     THIRD_GAME_SCORE: number;
     FOURTH_GAME_SCORE: number;
     MAX_LIVES: number;
+    CUBE_START_SCORE: number;
 }
 
 export type GameArea = 'game1' | 'game2' | 'game3' | 'game4';
