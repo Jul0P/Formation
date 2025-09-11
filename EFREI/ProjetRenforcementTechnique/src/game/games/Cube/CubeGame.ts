@@ -1,4 +1,3 @@
-import { GameState } from "../../core/GameState";
 import type { DodgeGame } from "../dodge/DodgeGame";
 
 export class CubeGame {
@@ -9,13 +8,11 @@ export class CubeGame {
     private posy = 185
     private step = 15;
     private zonespawner: number = 0;
-    private state: GameState;
     private dodgegame: DodgeGame;
     private keys: Set<string> = new Set();
     private movementInterval?: number;
 
-    constructor(state: GameState, dodgegame: DodgeGame) {
-        this.state = state;
+    constructor(dodgegame: DodgeGame) {
         this.dodgegame = dodgegame;
         const area = document.getElementById('cube-area')
         const playerC = document.getElementById("player_cube")

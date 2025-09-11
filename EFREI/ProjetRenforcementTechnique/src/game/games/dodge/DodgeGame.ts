@@ -189,7 +189,7 @@ export class DodgeGame {
                 game2.classList.add('active', 'split');
                 
                 if (!this.cubeGame) {
-                    this.cubeGame = new CubeGame(this.state, this);
+                    this.cubeGame = new CubeGame(this);
                     this.cubeGame.start();
                 }
             }, 250);
