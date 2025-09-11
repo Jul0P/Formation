@@ -4,6 +4,10 @@ import { GameConfig } from '../../../config/GameConfig';
 import type { Direction } from '../../types';
 import { saveHighScore } from '../../../shared/storage';
 import { SoundManager } from '../../utils/SoundManager';
+import { MathGame } from '../math/MathGame';
+import { CubeGame } from '../Cube/CubeGame';
+
+
 
 export class DodgeGame {
     public state: GameState;
@@ -13,6 +17,8 @@ export class DodgeGame {
     private soundManager: SoundManager;
     private scoreInterval?: number;
     private spawnInterval?: number;
+    private cubeGame?: CubeGame;
+    private mathGame?: MathGame
     
     
     constructor() {
@@ -216,9 +222,9 @@ export class DodgeGame {
                     this.cubeGame.clearZones()
                 }  
 
-                if (!mathGame) {
-                mathGame = new MathGame(this);
-                mathGame.start();
+                if (!this.mathGame) {
+                this.mathGame = new MathGame(this);
+                this.mathGame.start();
             }
             }, 250);
         }
@@ -338,9 +344,9 @@ export class DodgeGame {
                 this.cubeGame = undefined
             }
 
-            if (mathGame) {
-            mathGame.endgame(); 
-            mathGame = undefined;
+            if (this.mathGame) {
+            this.mathGame.endgame(); 
+            this.mathGame = undefined;
               }
             this.updateUI();
     }
