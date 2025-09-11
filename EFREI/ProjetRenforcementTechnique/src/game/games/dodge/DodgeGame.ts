@@ -3,12 +3,14 @@ import { ArrowManager } from './ArrowManager';
 import { GameConfig } from '../../../config/GameConfig';
 import type { Direction } from '../../types';
 import { saveHighScore } from '../../../shared/storage';
+import { SoundManager } from '../../utils/SoundManager';
 
 export class DodgeGame {
     public state: GameState;
     private gridElement: HTMLElement | null;
     private gameArea: HTMLElement | null;
     private arrowManager: ArrowManager;
+    private soundManager: SoundManager;
     private scoreInterval?: number;
     private spawnInterval?: number;
     
@@ -16,6 +18,7 @@ export class DodgeGame {
         this.state = new GameState();
         this.gridElement = document.getElementById('dodge-grid');
         this.gameArea = document.getElementById('game1');
+        this.soundManager = new SoundManager();
         
         if (!this.gridElement || !this.gameArea) {
             throw new Error('Éléments DOM requis non trouvés');
@@ -26,7 +29,14 @@ export class DodgeGame {
         this.init();
     }
     
-    private init(): void {
+    private async init(): Promise<void> {
+        try {
+            await this.soundManager.preloadSounds();
+            console.log('Sons chargés avec succès');
+        } catch (error) {
+            console.log(`Erreur lors du chargement des sons: ${error}`);
+        }
+
         this.createGrid();
         this.setupEventListeners();
         this.updateUI();
@@ -118,6 +128,8 @@ export class DodgeGame {
     public handleHit(): void {
         this.state.lives--;
         this.updateUI();
+
+        this.soundManager.play('hit', 0.5);
         
         const player = document.getElementById('player');
         if (player) {
@@ -230,6 +242,8 @@ export class DodgeGame {
         if (this.spawnInterval) clearInterval(this.spawnInterval);
         
         this.arrowManager.clear();
+
+        this.soundManager.play("game-over", 0.8);
         
         saveHighScore(this.state.score);
         
