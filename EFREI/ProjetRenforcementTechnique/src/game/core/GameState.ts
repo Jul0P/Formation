@@ -7,9 +7,9 @@ export class GameState implements IGameState {
     public playerPosition: number = 2;
     public isPlaying: boolean = false;
     public arrows: Map<string, any> = new Map();
-    public isSplit: boolean = false;
-    public isThreeGames: boolean = false;
-    public isFourGames: boolean = false;
+    public isCubeGames: boolean = false;
+    public isMathGames: boolean = false;
+    public isFlappyGames: boolean = false;
 
     reset(): void {
         this.score = 0;
@@ -17,8 +17,8 @@ export class GameState implements IGameState {
         this.playerPosition = 2;
         this.isPlaying = false;
         this.arrows.clear();
-        this.isSplit = false;
-        this.isThreeGames = false;
-        this.isFourGames = false;
+        this.isCubeGames = false;
+        this.isMathGames = false;
+        this.isFlappyGames = false;
     }
 }

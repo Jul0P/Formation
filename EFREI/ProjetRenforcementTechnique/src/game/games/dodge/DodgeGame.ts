@@ -5,9 +5,8 @@ import type { Direction } from '../../types';
 import { saveHighScore } from '../../../shared/storage';
 import { SoundManager } from '../../utils/SoundManager';
 import { MathGame } from '../math/MathGame';
-import { CubeGame } from '../Cube/CubeGame';
-
-
+import { CubeGame } from '../cube/CubeGame';
+import { FlappyGame } from '../flappy/FlappyGame';
 
 export class DodgeGame {
     public state: GameState;
@@ -18,8 +17,8 @@ export class DodgeGame {
     private scoreInterval?: number;
     private spawnInterval?: number;
     private cubeGame?: CubeGame;
-    private mathGame?: MathGame
-    
+    private mathGame?: MathGame;
+    private flappyGame?: FlappyGame;
     
     constructor() {
         this.state = new GameState();
@@ -138,14 +137,6 @@ export class DodgeGame {
 
         this.soundManager.play('hit', 0.5);
         
-        const player = document.getElementById('player');
-        if (player) {
-            player.style.background = '#ff0000';
-            setTimeout(() => {
-                if (player) player.style.background = '#00ff88';
-            }, 200);
-        }
-        
         if (this.state.lives <= 0) {
             this.gameOver();
         }
@@ -159,19 +150,16 @@ export class DodgeGame {
                 this.state.score++;
                 this.updateUI();
                 
-                if (this.state.score >= GameConfig.SPLIT_SCORE && !this.state.isSplit) {
-                    this.triggerSplit();
-                }
-                if (this.state.score >= GameConfig.CUBE_START_SCORE && !this.cubeGame) {
-                this.triggerCubeGame();
+                if (this.state.score >= GameConfig.CUBE_GAME_SCORE && !this.state.isCubeGames) {
+                    this.triggerCubeGame();
                 }
                 
-                if (this.state.score >= GameConfig.THIRD_GAME_SCORE && !this.state.isThreeGames) {
-                    this.triggerThirdGame();
+                if (this.state.score >= GameConfig.MATH_GAME_SCORE && !this.state.isMathGames) {
+                    this.triggerMathGame();
                 }
                 
-                if (this.state.score >= GameConfig.FOURTH_GAME_SCORE && !this.state.isFourGames) {
-                    this.triggerFourthGame();
+                if (this.state.score >= GameConfig.FLAPPY_GAME_SCORE && !this.state.isFlappyGames) {
+                    this.triggerFlappyGame();
                 }
             }
         }, 1000);
@@ -183,9 +171,9 @@ export class DodgeGame {
             }
         }, GameConfig.ARROW_SPAWN_RATE);
     }
-    
-    private triggerSplit(): void {
-        this.state.isSplit = true;
+
+    private triggerCubeGame(): void {
+        this.state.isCubeGames = true;
         this.arrowManager.clear();
         
         const game1 = document.getElementById('game1');
@@ -199,13 +187,17 @@ export class DodgeGame {
                 this.arrowManager.clear();
                 
                 game2.classList.add('active', 'split');
-              
+                
+                if (!this.cubeGame) {
+                    this.cubeGame = new CubeGame(this.state, this);
+                    this.cubeGame.start();
+                }
             }, 250);
         }
     }
     
-    private triggerThirdGame(): void {
-        this.state.isThreeGames = true;
+    private triggerMathGame(): void {
+        this.state.isMathGames = true;
         this.arrowManager.clear();
         
         const gameContainer = document.querySelector('.game-container');
@@ -223,15 +215,15 @@ export class DodgeGame {
                 }  
 
                 if (!this.mathGame) {
-                this.mathGame = new MathGame(this);
-                this.mathGame.start();
-            }
+                    this.mathGame = new MathGame(this);
+                    this.mathGame.start();
+                }
             }, 250);
         }
     }
     
-    private triggerFourthGame(): void {
-        this.state.isFourGames = true;
+    private triggerFlappyGame(): void {
+        this.state.isFlappyGames = true;
         this.arrowManager.clear();
         
         const gameContainer = document.querySelector('.game-container');
@@ -243,6 +235,20 @@ export class DodgeGame {
             setTimeout(() => {
                 this.arrowManager.clear();
                 game4.classList.add('active');
+                
+                if (this.cubeGame) {
+                    this.cubeGame.resetPosition();
+                    this.cubeGame.clearZones();
+                }
+                
+                if (this.mathGame) {
+                    // Le math game continue mais on peut nettoyer l'affichage si nécessaire
+                }
+                
+                if (!this.flappyGame) {
+                    this.flappyGame = new FlappyGame(this);
+                    this.flappyGame.start();
+                }
             }, 250);
         }
     }
@@ -297,15 +303,32 @@ export class DodgeGame {
     private reset(): void {
         this.state.reset();
         
+        if (this.scoreInterval) clearInterval(this.scoreInterval);
+        if (this.spawnInterval) clearInterval(this.spawnInterval);
+        
+        this.arrowManager.clear();
+        
+        if (this.cubeGame) {
+            this.cubeGame.stop();
+            this.cubeGame.clearZones();
+            this.cubeGame = undefined;
+        }
+        
+        if (this.mathGame) {
+            this.mathGame.endgame();
+            this.mathGame = undefined;
+        }
+        
+        if (this.flappyGame) {
+            this.flappyGame.stop();
+            this.flappyGame = undefined;
+        }
+        
         const gameContainer = document.querySelector('.game-container');
         const games = ['game1', 'game2', 'game3', 'game4'];
         
         if (gameContainer) {
             gameContainer.removeAttribute('data-games');
-        }
-        if (this.cubeGame) {
-            this.cubeGame.stop()
-            this.cubeGame = undefined
         }
         
         games.forEach((id, index) => {
@@ -324,14 +347,6 @@ export class DodgeGame {
         this.updateUI();
     }
 
-    private triggerCubeGame(): void {
-        try {
-            this.cubeGame = new CubeGame(this.state, this)
-            this.cubeGame.start();
-        } catch {
-        }
-    }
-
     public stopall(): void {
             this.state.isPlaying = false;
             if (this.scoreInterval) clearInterval(this.scoreInterval);
@@ -348,6 +363,11 @@ export class DodgeGame {
             this.mathGame.endgame(); 
             this.mathGame = undefined;
               }
+              
+            if (this.flappyGame) {
+                this.flappyGame.stop();
+                this.flappyGame = undefined;
+            }
             this.updateUI();
     }
 }

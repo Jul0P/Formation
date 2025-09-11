@@ -27,38 +27,33 @@
                 <div id="cube-area">
                     <div id="player_cube" class="player-square"></div>
                 </div>
-                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;"></div>
             </div>
 
             <div id="game3" class="game-area split">
-  <div id="math-area">
-    <p id="question"></p>
-    <input type="number" id="response" />
-    <button id="Validez">Valider</button>
-    <p id="calcTimer"></p>
-  </div>
-  <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;"></div>
-</div>
+                <div id="math-area">
+                    <p id="question"></p>
+                    <input type="number" id="response" />
+                    <p id="calcTimer"></p>
+                </div>
+            </div>
 
             <div id="game4" class="game-area split">
-                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
-                    <h2>Jeu 4</h2>
-                    <p>Coming soon...</p>
+                <div id="flappy-area" class="flappy-container">
+                    <div id="flappy-ball" class="flappy-ball"></div>
                 </div>
             </div>
         </main>
 
-        <!-- Popover de démarrage -->
         <div class="popover" id="start-popover">
-            <h2>Bienvenue !</h2>
-            <p>Le premier jeu se joue avec les flèches<br>← Gauche | Droite →</p>
-            <p>À 25 points : 2ème jeu (Coming soon...)</p>
-            <p>À 50 points : 3ème jeu (Coming soon...)</p>
-            <p>À 75 points : 4ème jeu (Coming soon...)</p>
+            <h2>Bienvenue dans le Multitask Game !</h2>
+            <p><strong>Score 0+ :</strong> Dodge Game - Esquivez avec les flèches ← →</p>
+            <p><strong>Score 25+ :</strong> Cube Game - Collectez avec Z,Q,S,D</p>
+            <p><strong>Score 50+ :</strong> Math Game - Calculez avec le clavier numérique</p>
+            <p><strong>Score 75+ :</strong> Flappy Game - Volez avec la barre d'espace</p>
+            <p style="margin-top: 15px; color: #ff6b6b;"><strong>3 vies partagées entre tous les jeux</strong></p>
             <p style="margin-top: 20px; font-size: 18px; color: #00ff88;">Appuyez sur n'importe quelle touche pour commencer</p>
         </div>
 
-        <!-- Popover Game Over -->
         <div class="popover hidden" id="game-over-popover">
             <h2 style="color: #ff4444;">Game Over!</h2>
             <div class="score-display">Score: <span id="final-score">0</span></div>

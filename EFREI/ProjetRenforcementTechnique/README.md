@@ -49,25 +49,33 @@ Le jeu sera accessible sur `http://localhost:4173`
 
 ```
 src/
-├── game/                    # Logique de jeu
-│   ├── core/               # Classes de base
-│   │   └── GameState.ts    # État global du jeu
-│   ├── games/              # Mini-jeux
-│   │   └── dodge/          # Jeu d'esquive
-│   │       ├── DodgeGame.ts       # Logique principale
-│   │       └── ArrowManager.ts    # Gestion des projectiles
-│   ├── types/              # Interfaces TypeScript
-│   │   └── index.ts        # Définitions des types
-│   └── utils/              # Utilitaires
-│       └── SoundManager.ts # Système audio
-├── config/                 # Configuration
-│   └── GameConfig.ts       # Paramètres du jeu
-├── shared/                 # Code partagé
-│   └── storage.ts          # Gestion localStorage
-├── styles/                 # Feuilles de style
-│   ├── global.css          # Variables CSS et reset
-│   ├── game.css            # Styles du jeu
-│   └── home.css            # Styles de l'accueil
-├── game.ts                 # Point d'entrée du jeu
-└── main.ts                 # Point d'entrée de l'accueil
+├── game/                          # Logique de jeu
+│   ├── core/                      # Classes de base
+│   │   └── GameState.ts           # État global du jeu
+│   ├── games/                     # Mini-jeux
+│   │   ├── dodge/                 # Jeu principal (esquive)
+│   │   │   ├── DodgeGame.ts       # Contrôleur principal du jeu
+│   │   │   └── ArrowManager.ts    # Gestion des flèches
+│   │   ├── cube/                  # Jeu de mouvement (ZQSD)
+│   │   │   └── CubeGame.ts        # Collecte de zones avec timer
+│   │   ├── math/                  # Jeu de calcul mental
+│   │   │   └── MathGame.ts        # Questions mathématiques
+│   │   └── flappy/                # Jeu de physique (Flappy Bird)
+│   │       └── FlappyGame.ts      # Jeu avec gravité et obstacles
+│   ├── types/                     # Interfaces TypeScript
+│   │   └── index.ts               # Définitions des types
+│   └── utils/                     # Utilitaires
+│       └── SoundManager.ts        # Système audio
+├── config/                        # Configuration
+│   └── GameConfig.ts              # Paramètres globaux du jeu
+├── shared/                        # Code partagé
+│   └── storage.ts                 # Gestion localStorage
+├── styles/                        # Feuilles de style
+│   ├── global.css                 # Variables CSS et reset
+│   ├── game.css                   # Styles des jeux
+│   ├── home.css                   # Styles de l'accueil
+│   └── help.css                   # Styles de l'aide
+├── game.ts                        # Point d'entrée du jeu
+├── main.ts                        # Point d'entrée de l'accueil
+└── vite-env.d.ts                  # Types Vite
 ```
