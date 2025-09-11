@@ -3,14 +3,20 @@ import { ArrowManager } from './ArrowManager';
 import { GameConfig } from '../../../config/GameConfig';
 import type { Direction } from '../../types';
 import { saveHighScore } from '../../../shared/storage';
+import { CubeGame } from '../Cube/CubeGame';
+import { MathGame } from '../math/MathGame';
+let mathGame: MathGame | undefined;
+
 
 export class DodgeGame {
     public state: GameState;
     private gridElement: HTMLElement | null;
     private gameArea: HTMLElement | null;
     private arrowManager: ArrowManager;
+    private cubeGame?: CubeGame
     private scoreInterval?: number;
     private spawnInterval?: number;
+    
     
     constructor() {
         this.state = new GameState();
@@ -143,6 +149,9 @@ export class DodgeGame {
                 if (this.state.score >= GameConfig.SPLIT_SCORE && !this.state.isSplit) {
                     this.triggerSplit();
                 }
+                if (this.state.score >= GameConfig.CUBE_START_SCORE && !this.cubeGame) {
+                this.triggerCubeGame();
+                }
                 
                 if (this.state.score >= GameConfig.THIRD_GAME_SCORE && !this.state.isThreeGames) {
                     this.triggerThirdGame();
@@ -177,6 +186,7 @@ export class DodgeGame {
                 this.arrowManager.clear();
                 
                 game2.classList.add('active', 'split');
+              
             }, 250);
         }
     }
@@ -194,6 +204,15 @@ export class DodgeGame {
             setTimeout(() => {
                 this.arrowManager.clear();
                 game3.classList.add('active');
+                if (this.cubeGame) {
+                    this.cubeGame.resetPosition();
+                    this.cubeGame.clearZones()
+                }  
+
+                if (!mathGame) {
+                mathGame = new MathGame(this);
+                mathGame.start();
+            }
             }, 250);
         }
     }
@@ -240,6 +259,12 @@ export class DodgeGame {
             finalScore.textContent = `${this.state.score}`;
             popup.classList.remove('hidden');
         }
+
+        if (this.cubeGame) {
+            this.cubeGame.stop()
+            this.cubeGame = undefined
+        }
+        this.stopall()
     }
     
     private showStart(): void {
@@ -263,6 +288,10 @@ export class DodgeGame {
         if (gameContainer) {
             gameContainer.removeAttribute('data-games');
         }
+        if (this.cubeGame) {
+            this.cubeGame.stop()
+            this.cubeGame = undefined
+        }
         
         games.forEach((id, index) => {
             const game = document.getElementById(id);
@@ -278,5 +307,32 @@ export class DodgeGame {
         
         this.createGrid();
         this.updateUI();
+    }
+
+    private triggerCubeGame(): void {
+        try {
+            this.cubeGame = new CubeGame(this.state, this)
+            this.cubeGame.start();
+        } catch {
+        }
+    }
+
+    public stopall(): void {
+            this.state.isPlaying = false;
+            if (this.scoreInterval) clearInterval(this.scoreInterval);
+            if (this.spawnInterval) clearInterval(this.spawnInterval);
+            this.arrowManager.clear();
+
+            if (this.cubeGame){
+                this.cubeGame.stop()
+                this.cubeGame.clearZones()
+                this.cubeGame = undefined
+            }
+
+            if (mathGame) {
+            mathGame.endgame(); 
+            mathGame = undefined;
+              }
+            this.updateUI();
     }
 }
