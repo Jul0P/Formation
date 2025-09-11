@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Multitask Game - Jeu</title>
+        <link rel="stylesheet" href="/src/styles/global.css">
+        <link rel="stylesheet" href="/src/styles/game.css">
+    </head>
+    <body>
+        <header>
+            <div class="score">Score: <span id="score">0</span></div>
+            <div class="lives">Vies: <span id="lives">3</span></div>
+        </header>
+
+        <main class="game-container">
+            <div id="game1" class="game-area full">
+                <div class="dodge-grid" id="dodge-grid"></div>
+            </div>
+            
+            <div id="game2" class="game-area split">
+                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
+                    <h2>Jeu 2</h2>
+                    <p>Coming soon...</p>
+                </div>
+            </div>
+
+            <div id="game3" class="game-area split">
+                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
+                    <h2>Jeu 3</h2>
+                    <p>Coming soon...</p>
+                </div>
+            </div>
+
+            <div id="game4" class="game-area split">
+                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center;">
+                    <h2>Jeu 4</h2>
+                    <p>Coming soon...</p>
+                </div>
+            </div>
+        </main>
+
+        <!-- Popover de démarrage -->
+        <div class="popover" id="start-popover">
+            <h2>Bienvenue !</h2>
+            <p>Le premier jeu se joue avec les flèches<br>← Gauche | Droite →</p>
+            <p>À 25 points : 2ème jeu (Coming soon...)</p>
+            <p>À 50 points : 3ème jeu (Coming soon...)</p>
+            <p>À 75 points : 4ème jeu (Coming soon...)</p>
+            <p style="margin-top: 20px; font-size: 18px; color: #00ff88;">Appuyez sur n'importe quelle touche pour commencer</p>
+        </div>
+
+        <!-- Popover Game Over -->
+        <div class="popover hidden" id="game-over-popover">
+            <h2 style="color: #ff4444;">Game Over!</h2>
+            <div class="score-display">Score: <span id="final-score">0</span></div>
+            <button id="restart-button">Rejouer</button>
+            <button id="home-button" class="secondary">Retour à l'accueil</button>
+        </div>
+
+        <script type="module" src="/src/game.ts"></script>
+    </body>
+</html>

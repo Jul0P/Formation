@@ -3,22 +3,47 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="styles.css">
-        <title>Multitask</title>
+        <title>Multitask Game - Accueil</title>
+        <link rel="stylesheet" href="/src/styles/global.css">
+        <link rel="stylesheet" href="/src/styles/home.css">
     </head>
     <body>
-        <header>
-            <nav>
-               Multitask    <a href="help.html">Help</a>
-            </nav>
-        </header>
-        <main>
-            <a href="play.html"><button id="play_button">Jouer</button></a>
-        </main>
-        <script src="main.js" defer></script>
-    </body>
-    <footer>
-        <p>Tableau des score</p>
+        <nav class="navbar">
+            <div class="nav-container">
+                <h1 class="nav-title">Multitask Game</h1>
+                <ul class="nav-links">
+                    <li><a href="/">Accueil</a></li>
+                    <li><a href="/game.html">Jouer</a></li>
+                    <li><a href="/help.html">Aide</a></li>
+                </ul>
+            </div>
+        </nav>
 
-    </footer>
+        <main class="home-container">
+            <section class="hero">
+                <h2 class="hero-title">Multitask Game</h2>
+                <p class="hero-description">La fin est inévitable. Repoussez vos limites en survivant au chaos.</p>
+                <div class="hero-buttons">
+                    <a href="/game.html" class="button button-primary">Jouer Maintenant</a>
+                    <a href="/help.html" class="button button-secondary">En Savoir Plus</a>
+                </div>
+            </section>
+
+            <section class="highscores">
+                <h2>10 Meilleurs Scores</h2>
+                <table class="highscores-table">
+                    <thead>
+                        <tr>
+                            <th>Numéro</th>
+                            <th>Score</th>
+                        </tr>
+                    </thead>
+                    <tbody id="highscores-body">
+                    </tbody>
+                </table>
+            </section>
+        </main>
+
+        <script type="module" src="/src/main.ts"></script>
+    </body>
 </html>
