@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8" />
+        <link rel="icon" type="image/png" href="/assets/images/logo_icon.png" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="CinEfrei, le site de streaming de films et séries pour les étudiants de l'EFREI." />
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+        <!-- icons -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+        <link rel="stylesheet" href="/src/styles/main.css" />
+
+        <title>CinEfrei</title>
+    </head>
+    <body>
+        <header>
+            <nav class="navbar" id="navbar" role="navigation" aria-label="Barre de navigation">
+                <div class="navbar-left">
+                    <a href="#" class="logo" aria-label="Retour à l'accueil">
+                        <img src="/images/logo_horizontal.png" alt="Logo CinEfrei">
+                    </a>
+                    <ul class="navbar-menu" role="menubar">
+                        <li role="none">
+                            <a href="#" class="active" role="menuitem" aria-current="page" tabindex="0">Accueil</a>
+                        </li>
+                        <li role="none">
+                            <a href="#series" role="menuitem" tabindex="0">Séries</a>
+                        </li>
+                        <li role="none">
+                            <a href="#films" role="menuitem" tabindex="0">Films</a>
+                        </li>
+                        <li role="none">
+                            <a href="#top10" role="menuitem" tabindex="0">Les plus regardées</a>
+                        </li>
+                        <li role="none">
+                            <a href="#genres" role="menuitem" tabindex="0">Par genres</a>
+                        </li>
+                    </ul>
+                    <button class="mobile-menu-toggle" id="mobile-toggle" aria-label="Menu de navigation" aria-expanded="false" aria-controls="mobile-menu">
+                        <i class="fas fa-bars" aria-hidden="true"></i>
+                    </button>
+                </div>
+                <div class="navbar-right">
+                    <div class="search-container" role="search">
+                        <input type="text" class="search-bar" id="search-input" placeholder="Titres, personnes, genres" aria-label="Rechercher des films et séries">
+                        <button class="search-icon" id="search-icon" aria-label="Lancer la recherche" type="button">
+                            <i class="fas fa-search" aria-hidden="true"></i>
+                        </button>
+                        <div class="search-results" id="search-results" role="listbox" aria-label="Résultats de recherche"></div>
+                    </div>
+                    <div class="profile-container" id="profile-container" aria-expanded="false">
+                        <div class="profile-avatar" role="img" aria-label="Avatar utilisateur"></div>
+                        <i class="fas fa-caret-down" aria-hidden="true"></i>
+                        <div class="profile-menu" id="profile-menu" role="menu" aria-hidden="true">
+                            <a href="#">Gérer les profils</a>
+                            <a href="#">Transférer le profil</a>
+                            <a href="#">Compte</a>
+                            <a href="#">Centre d'aide</a>
+                            <a href="#">Se déconnecter de Netflix</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <div class="mobile-menu" id="mobile-menu" role="menu" aria-hidden="true">
+                <ul role="none">
+                    <li role="none"><a href="#" class="active" role="menuitem" aria-current="page">Accueil</a></li>
+                    <li role="none"><a href="#series" role="menuitem">Séries</a></li>
+                    <li role="none"><a href="#films" role="menuitem">Films</a></li>
+                    <li role="none"><a href="#top10" role="menuitem">Les plus regardées</a></li>
+                    <li role="none"><a href="#genres" role="menuitem">Par genres</a></li>
+                </ul>
+            </div>
+        </header>
+        <section class="hero-banner" id="hero-banner" role="banner">
+            <img alt="" class="hero-background" id="hero-image" role="presentation">
+            <div class="hero-gradient" aria-hidden="true"></div>
+            <div class="hero-content">
+                <h1 class="hero-title" id="hero-title"></h1>
+                <p class="hero-description" id="hero-description"></p>
+                <div class="hero-buttons">
+                    <button class="button-primary" aria-label="Lire le contenu sélectionné">
+                        <i class="fas fa-play" aria-hidden="true"></i>
+                        Lecture
+                    </button>
+                    <button class="button-secondary" onclick="openModal()" aria-label="Afficher plus d'informations">
+                        <i class="fas fa-info-circle" aria-hidden="true"></i>
+                        Plus d'infos
+                    </button>
+                </div>
+            </div>
+        </section>
+        <section class="search-page hidden" id="search-page" role="region">
+            <div class="search-page-container">
+                <div class="search-page-header">
+                    <h1 class="search-page-title" id="search-page-title">Recherche</h1>
+                    <p class="search-page-subtitle" id="search-page-subtitle">Tapez pour rechercher des films et séries</p>
+                </div>
+                <div class="search-results-grid" id="search-results-grid" 
+                    role="grid" aria-label="Résultats de recherche">
+                </div>
+                <div class="pagination-container" id="pagination-container" style="display: none;">
+                    <button class="pagination-button" id="prev-page" aria-label="Page précédente" disabled>
+                        <i class="fas fa-chevron-left" aria-hidden="true"></i>
+                    </button>
+                    <span class="pagination-info" id="pagination-info">Page 1</span>
+                    <button class="pagination-button" id="next-page" aria-label="Page suivante">
+                        <i class="fas fa-chevron-right" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+        <main>
+            <div class="content-container" id="main-content">
+                <section class="content-section">
+                    <h2 class="section-title">Tendances actuelles</h2>
+                    <div class="carousel-container">
+                        <button class="carousel-button carousel-button-left" aria-label="Défiler vers la gauche">
+                            <i class="fas fa-chevron-left" aria-hidden="true"></i>
+                        </button>
+                        <div class="cards-container">
+                            <div class="cards-row" id="trending-row"></div>
+                        </div>
+                        <button class="carousel-button carousel-button-right" aria-label="Défiler vers la droite">
+                            <i class="fas fa-chevron-right" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </section>
+                <section class="content-section">
+                    <h2 class="section-title">Reprendre le visionnage</h2>
+                    <div class="carousel-container">
+                        <button class="carousel-button carousel-button-left" aria-label="Défiler vers la gauche">
+                            <i class="fas fa-chevron-left" aria-hidden="true"></i>
+                        </button>
+                        <div class="cards-container">
+                            <div class="cards-row" id="continue-row"></div>
+                        </div>
+                        <button class="carousel-button carousel-button-right" aria-label="Défiler vers la droite">
+                            <i class="fas fa-chevron-right" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </section>
+                <section class="content-section" id="series">
+                    <h2 class="section-title">Séries Netflix</h2>
+                    <div class="carousel-container">
+                        <button class="carousel-button carousel-button-left" aria-label="Défiler vers la gauche">
+                            <i class="fas fa-chevron-left" aria-hidden="true"></i>
+                        </button>
+                        <div class="cards-container">
+                            <div class="cards-row" id="originals-row"></div>
+                        </div>
+                        <button class="carousel-button carousel-button-right" aria-label="Défiler vers la droite">
+                            <i class="fas fa-chevron-right" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </section>
+                <section class="content-section" id="films">
+                    <h2 class="section-title">Films populaires</h2>
+                    <div class="carousel-container">
+                        <button class="carousel-button carousel-button-left" aria-label="Défiler vers la gauche">
+                            <i class="fas fa-chevron-left" aria-hidden="true"></i>
+                        </button>
+                        <div class="cards-container">
+                            <div class="cards-row" id="movies-row"></div>
+                        </div>
+                        <button class="carousel-button carousel-button-right" aria-label="Défiler vers la droite">
+                            <i class="fas fa-chevron-right" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </section>
+                <section class="content-section" id="top10">
+                    <h2 class="section-title">Top 10</h2>
+                    <div class="top10-container scroll-container" id="top10-container"></div>
+                </section>
+                <section class="content-section" id="genres">
+                    <h2 class="section-title">Par genres</h2>
+                    <div class="genre-subsection">
+                        <h3 class="subsection-title">Films d'action et d'aventure</h3>
+                        <div class="carousel-container">
+                            <button class="carousel-button carousel-button-left" aria-label="Défiler vers la gauche">
+                                <i class="fas fa-chevron-left" aria-hidden="true"></i>
+                            </button>
+                            <div class="cards-container">
+                                <div class="cards-row" id="action-row"></div>
+                            </div>
+                            <button class="carousel-button carousel-button-right" aria-label="Défiler vers la droite">
+                                <i class="fas fa-chevron-right" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="genre-subsection">
+                        <h3 class="subsection-title">Comédies</h3>
+                        <div class="carousel-container">
+                            <button class="carousel-button carousel-button-left" aria-label="Défiler vers la gauche">
+                                <i class="fas fa-chevron-left" aria-hidden="true"></i>
+                            </button>
+                            <div class="cards-container">
+                                <div class="cards-row" id="comedies-row"></div>
+                            </div>
+                            <button class="carousel-button carousel-button-right" aria-label="Défiler vers la droite">
+                                <i class="fas fa-chevron-right" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="genre-subsection">
+                        <h3 class="subsection-title">Films d'horreur</h3>
+                        <div class="carousel-container">
+                            <button class="carousel-button carousel-button-left" aria-label="Défiler vers la gauche">
+                                <i class="fas fa-chevron-left" aria-hidden="true"></i>
+                            </button>
+                            <div class="cards-container">
+                                <div class="cards-row" id="horror-row"></div>
+                            </div>
+                            <button class="carousel-button carousel-button-right" aria-label="Défiler vers la droite">
+                                <i class="fas fa-chevron-right" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="genre-subsection">
+                        <h3 class="subsection-title">Documentaires</h3>
+                        <div class="carousel-container">
+                            <button class="carousel-button carousel-button-left" aria-label="Défiler vers la gauche">
+                                <i class="fas fa-chevron-left" aria-hidden="true"></i>
+                            </button>
+                            <div class="cards-container">
+                                <div class="cards-row" id="documentaries-row"></div>
+                            </div>
+                            <button class="carousel-button carousel-button-right" aria-label="Défiler vers la droite">
+                                <i class="fas fa-chevron-right" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+        <footer>
+            <p>&copy; 2025 CinEfrei - Tous droits réservés</p>
+        </footer>
+        <div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true" aria-hidden="true">
+            <div class="modal-content">
+                <button class="modal-close" onclick="closeModal()" aria-label="Fermer la fenêtre">
+                    <i class="fas fa-times" aria-hidden="true"></i>
+                </button>
+                <div class="modal-hero">
+                    <img src="" alt="" class="modal-background" id="modal-image" role="presentation">
+                    <div class="modal-hero-content">
+                        <h2 class="modal-title" id="modal-title">Titre du contenu</h2>
+                        <div class="modal-buttons">
+                            <button class="button-primary" aria-label="Lire le contenu">
+                                <i class="fas fa-play" aria-hidden="true"></i>
+                                Lecture
+                            </button>
+                            <button class="button-secondary" aria-label="Ajouter à ma liste">
+                                <i class="fas fa-plus" aria-hidden="true"></i>
+                                Ma liste
+                            </button>
+                            <button class="card-button" aria-label="J'aime ce contenu">
+                                <i class="fas fa-thumbs-up" aria-hidden="true"></i>
+                            </button>
+                            <button class="card-button" aria-label="Je n'aime pas ce contenu">
+                                <i class="fas fa-thumbs-down" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-details" id="modal-details"></div>
+            </div>
+        </div>
+        <script type="module" src="/src/main.ts"></script>
+    </body>
+</html>

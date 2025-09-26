@@ -1,0 +1,16 @@
+.hidden {
+    display: none !important;
+}
+
+.scroll-container {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.scroll-container::-webkit-scrollbar {
+    display: none;
+}
+
+html {
+    scroll-padding-top: 80px; /* pour la navbar fixe */
+}
