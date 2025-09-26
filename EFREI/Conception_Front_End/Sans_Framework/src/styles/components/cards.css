@@ -163,13 +163,6 @@
     margin-bottom: 8px;
 }
 
-.card-match {
-    color: #46d369;
-    font-weight: 600;
-    font-size: 12px;
-    margin-bottom: 4px;
-}
-
 .card-meta {
     display: flex;
     align-items: center;
