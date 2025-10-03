@@ -16,7 +16,7 @@
     <meta property="og:locale" content="fr_FR" />
     <meta property="og:site_name" content="Projefrei" />
 
-    <title>Projefrei</title>
+    <title>Détails collaborateur - Projefrei</title>
 
     <link rel="stylesheet" href="css/style.css" />
   </head>
@@ -41,28 +41,57 @@
       </div>
     </header>
     <main id="main" role="main">
-      <section class="hero section" id="home" aria-labelledby="hero-title">
+      <section class="section" id="user-info">
         <div class="container">
-          <h1 id="hero-title" class="hero-title">Gestion des collaborateurs</h1>
-          <p class="hero-subtitle">Consultez et gérez les collaborateurs et leurs projets</p>
-          <div class="search-container" role="search">
-            <input
-              type="search"
-              id="searchInput"
-              class="search-input"
-              placeholder="Rechercher..."
-              aria-label="Champ de recherche"
-              aria-describedby="search-help"
-            />
-            <button class="search-btn" type="button">Rechercher</button>
+          <a href="index.html" class="back-link">Retour à la liste</a>
+          <div id="userInfo" class="user-card">
+            <div class="loading">
+              <p>Chargement de l'utilisateur...</p>
+            </div>
           </div>
         </div>
       </section>
-      <section class="section" id="items" aria-labelledby="items-title">
+      <section class="section" id="add-task">
         <div class="container">
-          <div class="grid" id="itemsGrid" role="list">
+          <h2>Ajouter une tâche</h2>
+          <form id="addTaskForm" class="task-form">
+            <div class="form-group">
+              <label for="taskTitle">Titre de la tâche *</label>
+              <input
+                type="text"
+                id="taskTitle"
+                name="title"
+                class="form-input"
+                placeholder="Entrez le titre de la tâche"
+                required
+                minlength="3"
+                maxlength="200"
+              />
+            </div>
+            <div class="form-group">
+              <label for="taskStatus">Statut</label>
+              <select id="taskStatus" name="completed" class="form-input">
+                <option value="false">En cours</option>
+                <option value="true">Terminée</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Ajouter la tâche</button>
+          </form>
+        </div>
+      </section>
+      <section class="section" id="tasks">
+        <div class="container">
+          <div class="tasks-header">
+            <h2>Tâches</h2>
+            <div class="filter-container" role="group" aria-label="Filtres tâches">
+              <button class="filter-btn active" data-filter="all">Toutes</button>
+              <button class="filter-btn" data-filter="completed">Terminées</button>
+              <button class="filter-btn" data-filter="pending">En cours</button>
+            </div>
+          </div>
+          <div id="tasksList" class="tasks-list">
             <div class="loading">
-              <p>Chargement des collaborateurs...</p>
+              <p>Chargement des tâches...</p>
             </div>
           </div>
         </div>
@@ -71,6 +100,6 @@
     <footer class="footer">
       <p>&copy; 2025 Projefrei. Tous droits réservés.</p>
     </footer>
-    <script type="module" src="js/main.js"></script>
+    <script type="module" src="js/user.js"></script>
   </body>
 </html>

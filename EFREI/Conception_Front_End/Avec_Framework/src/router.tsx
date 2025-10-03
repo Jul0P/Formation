@@ -1,9 +1,8 @@
-import { createBrowserRouter } from 'react-router';
-
 import RootLayout from '@/layouts/RootLayout';
-
+import { UserDetail } from '@/routes/details';
 import ErrorPage from '@/routes/error';
-import HomePage from '@/routes/index';
+import { Home } from '@/routes/index';
+import { createBrowserRouter } from 'react-router';
 
 export const router = createBrowserRouter([
   {
@@ -13,7 +12,11 @@ export const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <HomePage />,
+        element: <Home />,
+      },
+      {
+        path: 'user/:userId',
+        element: <UserDetail />,
       },
     ],
   },
