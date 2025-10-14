@@ -5,7 +5,7 @@ import type { Direction } from '../../types';
 import { saveHighScore } from '../../../shared/storage';
 import { SoundManager } from '../../utils/SoundManager';
 import { MathGame } from '../math/MathGame';
-import { CubeGame } from '../cube/CubeGame';
+import { CubeGame } from '../Cube/CubeGame';
 import { FlappyGame } from '../flappy/FlappyGame';
 
 export class DodgeGame {
