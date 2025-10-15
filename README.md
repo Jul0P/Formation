@@ -8,6 +8,9 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![React](https://img.shields.io/badge/React-20232A?style=flat&logo=react&logoColor=61DAFB)](https://react.dev/)
 [![Vite](https://img.shields.io/badge/Vite-646CFF?style=flat&logo=vite&logoColor=white)](https://vitejs.dev/)
+[![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat&logo=node.js&logoColor=white)](https://nodejs.org/)
+[![Express](https://img.shields.io/badge/Express-000000?style=flat&logo=express&logoColor=white)](https://expressjs.com/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=flat&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
 
 ---
 
@@ -18,6 +21,10 @@ EFREI/
 ├── Conception_Front_End/
 │   ├── Sans_Framework/        # Projet vanilla HTML/CSS/JS
 │   └── Avec_Framework/        # Projet React + TypeScript
+├── Conception_Back_End/
+│   ├── nodejs2/               # Express.js - Routes & Query Strings
+│   ├── nodejs3/               # Express.js - API REST CRUD
+│   └── nodejs4/               # Node.js + PostgreSQL
 └── ProjetRenforcementTechnique/  # Jeu multitâche TypeScript
 ```
 
