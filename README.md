@@ -24,7 +24,9 @@ EFREI/
 ├── Conception_Back_End/
 │   ├── nodejs2/               # Express.js - Routes & Query Strings
 │   ├── nodejs3/               # Express.js - API REST CRUD
-│   └── nodejs4/               # Node.js + PostgreSQL
+│   ├── nodejs4/               # Node.js + PostgreSQL
+│   ├── nodejs5/               # Express.js - Middlewares
+│   └── nodejs5.2/             # Express.js - Authentification avec PostgreSQL
 └── ProjetRenforcementTechnique/  # Jeu multitâche TypeScript
 ```
 
