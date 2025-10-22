@@ -5,6 +5,7 @@ import PokemonRepository from '../repositories/PokemonRepository';
 import PokemonService from '../services/PokemonService';
 
 const router = Router();
+
 const pokemonRepo = new PokemonRepository();
 const attackRepo = new AttackRepository();
 const pokemonService = new PokemonService(pokemonRepo, attackRepo);

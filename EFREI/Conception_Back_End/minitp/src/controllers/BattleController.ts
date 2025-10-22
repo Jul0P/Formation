@@ -5,7 +5,8 @@ import TrainerService from '../services/TrainerService';
 class BattleController {
   constructor(private battleService: BattleService, private trainerService: TrainerService) {}
 
-  public randomChallenge = async (req: Request, res: Response): Promise<void> => {
+  /** POST /battles/random-challenge */
+  randomChallenge = async (req: Request, res: Response): Promise<void> => {
     const { trainer1Id, trainer2Id } = req.body;
     const trainer1 = await this.trainerService.getTrainerById(trainer1Id);
     const trainer2 = await this.trainerService.getTrainerById(trainer2Id);
@@ -19,7 +20,8 @@ class BattleController {
     res.json(result);
   };
 
-  public arena1 = async (req: Request, res: Response): Promise<void> => {
+  /** POST /battles/arena1 - 100 random battles */
+  arena1 = async (req: Request, res: Response): Promise<void> => {
     const { trainer1Id, trainer2Id } = req.body;
     const trainer1 = await this.trainerService.getTrainerById(trainer1Id);
     const trainer2 = await this.trainerService.getTrainerById(trainer2Id);
@@ -33,7 +35,8 @@ class BattleController {
     res.json(result);
   };
 
-  public deterministicChallenge = async (req: Request, res: Response): Promise<void> => {
+  /** POST /battles/deterministic-challenge */
+  deterministicChallenge = async (req: Request, res: Response): Promise<void> => {
     const { trainer1Id, trainer2Id } = req.body;
     const trainer1 = await this.trainerService.getTrainerById(trainer1Id);
     const trainer2 = await this.trainerService.getTrainerById(trainer2Id);
@@ -47,7 +50,8 @@ class BattleController {
     res.json(result);
   };
 
-  public arena2 = async (req: Request, res: Response): Promise<void> => {
+  /** POST /battles/arena2 - 100 deterministic battles */
+  arena2 = async (req: Request, res: Response): Promise<void> => {
     const { trainer1Id, trainer2Id } = req.body;
     const trainer1 = await this.trainerService.getTrainerById(trainer1Id);
     const trainer2 = await this.trainerService.getTrainerById(trainer2Id);

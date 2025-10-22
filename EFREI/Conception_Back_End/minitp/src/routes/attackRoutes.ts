@@ -4,6 +4,7 @@ import AttackRepository from '../repositories/AttackRepository';
 import AttackService from '../services/AttackService';
 
 const router = Router();
+
 const attackRepository = new AttackRepository();
 const attackService = new AttackService(attackRepository);
 const attackController = new AttackController(attackService);

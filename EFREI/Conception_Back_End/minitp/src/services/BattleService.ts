@@ -12,6 +12,7 @@ interface BattleResult {
 class BattleService {
   constructor(private trainerService: TrainerService) {}
 
+  /** Heal both trainers, select random Pokemon, battle - winner gains 1 XP */
   public async randomChallenge(trainer1: Trainer, trainer2: Trainer): Promise<BattleResult> {
     const log: string[] = [];
 
@@ -37,6 +38,7 @@ class BattleService {
     return { winner, loser, rounds: result.rounds, log };
   }
 
+  /** 100 random battles - winner determined by level/XP */
   public async arena1(trainer1: Trainer, trainer2: Trainer): Promise<BattleResult> {
     const log: string[] = [];
     log.push('🏟️ ARÈNE 1 - 100 combats aléatoires !');
@@ -77,6 +79,7 @@ class BattleService {
     return { winner, loser, rounds: 100, log };
   }
 
+  /** Select Pokemon with most HP, battle - winner gains 1 XP (no healing) */
   public async deterministicChallenge(trainer1: Trainer, trainer2: Trainer): Promise<BattleResult> {
     const log: string[] = [];
 
@@ -102,6 +105,7 @@ class BattleService {
     return { winner, loser, rounds: result.rounds, log };
   }
 
+  /** 100 deterministic battles until one trainer has no Pokémon left (no healing) */
   public async arena2(trainer1: Trainer, trainer2: Trainer): Promise<BattleResult> {
     const log: string[] = [];
     log.push('🏟️ ARÈNE 2 - 100 combats déterministes !');
@@ -127,6 +131,7 @@ class BattleService {
     return { winner, loser, rounds: 100, log };
   }
 
+  /** Execute duel between two Pokemon with alternating attacks */
   private duel(pokemon1: Pokemon, pokemon2: Pokemon, log: string[]): { winner: Pokemon; rounds: number } {
     let rounds = 0;
 

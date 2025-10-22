@@ -13,7 +13,6 @@ dotenv.config();
 const app = express();
 const PORT = 3000;
 
-// Middlewares
 app.use(express.json());
 app.use(logger);
 
@@ -21,12 +20,6 @@ app.use('/trainers', trainerRoutes);
 app.use('/pokemon', pokemonRoutes);
 app.use('/attacks', attackRoutes);
 app.use('/battles', battleRoutes);
-
-// Routes API (JSON)
-app.use('/api/trainers', trainerRoutes);
-app.use('/api/pokemon', pokemonRoutes);
-app.use('/api/attacks', attackRoutes);
-app.use('/api/battles', battleRoutes);
 
 async function startServer() {
   try {
@@ -44,7 +37,7 @@ async function startServer() {
     });
   } catch (error) {
     console.error('Erreur au démarrage:', error);
-    process.exit(1); // Quitter le processus en cas d'erreur
+    process.exit(1); // Leave the process on error
   }
 }
 

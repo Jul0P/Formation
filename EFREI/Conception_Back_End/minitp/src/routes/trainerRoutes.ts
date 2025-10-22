@@ -4,6 +4,7 @@ import TrainerRepository from '../repositories/TrainerRepository';
 import TrainerService from '../services/TrainerService';
 
 const router = Router();
+
 const trainerRepo = new TrainerRepository();
 const trainerService = new TrainerService(trainerRepo);
 const controller = new TrainerController(trainerService);

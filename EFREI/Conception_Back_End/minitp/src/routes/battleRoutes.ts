@@ -5,6 +5,7 @@ import BattleService from '../services/BattleService';
 import TrainerService from '../services/TrainerService';
 
 const router = Router();
+
 const trainerRepo = new TrainerRepository();
 const trainerService = new TrainerService(trainerRepo);
 const battleService = new BattleService(trainerService);

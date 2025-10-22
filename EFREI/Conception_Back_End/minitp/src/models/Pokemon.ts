@@ -31,7 +31,7 @@ class Pokemon {
     return this.attacks.filter((attack) => attack.canBeUsed());
   }
 
-  public attackPokemon(traget: Pokemon): { attack: Attack; damage: number } {
+  public attackPokemon(target: Pokemon): { attack: Attack; damage: number } {
     if (!this.isAlive()) {
       throw new Error(`${this.name} est KO et ne peut pas attaquer`);
     }
@@ -44,8 +44,8 @@ class Pokemon {
     const attack = availableAttacks[Math.floor(Math.random() * availableAttacks.length)];
     attack.use();
 
-    const damage = Math.min(attack.damage, traget.lifePoint);
-    traget.takeDamage(damage);
+    const damage = Math.min(attack.damage, target.lifePoint);
+    target.takeDamage(damage);
 
     return { attack, damage };
   }
