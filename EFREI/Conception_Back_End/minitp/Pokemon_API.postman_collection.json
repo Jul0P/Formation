@@ -1,0 +1,1700 @@
+{
+  "info": {
+    "name": "Pokemon API - Tests Complets",
+    "_postman_id": "pokemon-api-tests",
+    "description": "Collection complète pour tester l'API Pokémon de A à Z",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:3000/api",
+      "type": "string"
+    },
+    {
+      "key": "trainer1_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "trainer2_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "trainer3_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "trainer4_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "pokemon1_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "pokemon2_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "pokemon3_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "pokemon4_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "pokemon5_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "pokemon6_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "pokemon7_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "pokemon8_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "pokemon9_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "pokemon10_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "attack1_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "attack2_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "attack3_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "attack4_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "attack5_id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "attack6_id",
+      "value": "",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "1. CRÉATION JEU D'ESSAI",
+      "item": [
+        {
+          "name": "1.1 CRÉER ATTAQUES",
+          "item": [
+            {
+              "name": "Créer Attaque - Éclair",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 201\", function () {",
+                      "    pm.response.to.have.status(201);",
+                      "});",
+                      "",
+                      "pm.test(\"Response has id\", function () {",
+                      "    var jsonData = pm.response.json();",
+                      "    pm.expect(jsonData).to.have.property('id');",
+                      "    pm.collectionVariables.set(\"attack1_id\", jsonData.id);",
+                      "});"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Éclair\",\n  \"damage\": 20,\n  \"usageLimit\": 12\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/attacks",
+                  "host": ["{{base_url}}"],
+                  "path": ["attacks"]
+                }
+              }
+            },
+            {
+              "name": "Créer Attaque - Flammèche",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 201\", function () {",
+                      "    pm.response.to.have.status(201);",
+                      "});",
+                      "var jsonData = pm.response.json();",
+                      "pm.collectionVariables.set(\"attack2_id\", jsonData.id);"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [{ "key": "Content-Type", "value": "application/json" }],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Flammèche\",\n  \"damage\": 18,\n  \"usageLimit\": 18\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/attacks",
+                  "host": ["{{base_url}}"],
+                  "path": ["attacks"]
+                }
+              }
+            },
+            {
+              "name": "Créer Attaque - Hydrocanon",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 201\", function () {",
+                      "    pm.response.to.have.status(201);",
+                      "});",
+                      "var jsonData = pm.response.json();",
+                      "pm.collectionVariables.set(\"attack3_id\", jsonData.id);"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [{ "key": "Content-Type", "value": "application/json" }],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Hydrocanon\",\n  \"damage\": 25,\n  \"usageLimit\": 10\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/attacks",
+                  "host": ["{{base_url}}"],
+                  "path": ["attacks"]
+                }
+              }
+            },
+            {
+              "name": "Créer Attaque - Charge",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 201\", function () {",
+                      "    pm.response.to.have.status(201);",
+                      "});",
+                      "var jsonData = pm.response.json();",
+                      "pm.collectionVariables.set(\"attack4_id\", jsonData.id);"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [{ "key": "Content-Type", "value": "application/json" }],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Charge\",\n  \"damage\": 10,\n  \"usageLimit\": 30\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/attacks",
+                  "host": ["{{base_url}}"],
+                  "path": ["attacks"]
+                }
+              }
+            },
+            {
+              "name": "Créer Attaque - Plaquage",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 201\", function () {",
+                      "    pm.response.to.have.status(201);",
+                      "});",
+                      "var jsonData = pm.response.json();",
+                      "pm.collectionVariables.set(\"attack5_id\", jsonData.id);"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [{ "key": "Content-Type", "value": "application/json" }],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Plaquage\",\n  \"damage\": 15,\n  \"usageLimit\": 20\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/attacks",
+                  "host": ["{{base_url}}"],
+                  "path": ["attacks"]
+                }
+              }
+            },
+            {
+              "name": "Créer Attaque - Fatal-Foudre",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 201\", function () {",
+                      "    pm.response.to.have.status(201);",
+                      "});",
+                      "var jsonData = pm.response.json();",
+                      "pm.collectionVariables.set(\"attack6_id\", jsonData.id);"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [{ "key": "Content-Type", "value": "application/json" }],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Fatal-Foudre\",\n  \"damage\": 40,\n  \"usageLimit\": 6\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/attacks",
+                  "host": ["{{base_url}}"],
+                  "path": ["attacks"]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "1.2 CRÉER DRESSEURS",
+          "item": [
+            {
+              "name": "Créer Dresseur - Sacha",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 201\", function () {",
+                      "    pm.response.to.have.status(201);",
+                      "});",
+                      "var jsonData = pm.response.json();",
+                      "pm.collectionVariables.set(\"trainer1_id\", jsonData.id);"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [{ "key": "Content-Type", "value": "application/json" }],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Sacha\"\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/trainers",
+                  "host": ["{{base_url}}"],
+                  "path": ["trainers"]
+                }
+              }
+            },
+            {
+              "name": "Créer Dresseur - Pierre",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 201\", function () {",
+                      "    pm.response.to.have.status(201);",
+                      "});",
+                      "var jsonData = pm.response.json();",
+                      "pm.collectionVariables.set(\"trainer2_id\", jsonData.id);"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [{ "key": "Content-Type", "value": "application/json" }],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Pierre\"\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/trainers",
+                  "host": ["{{base_url}}"],
+                  "path": ["trainers"]
+                }
+              }
+            },
+            {
+              "name": "Créer Dresseur - Ondine",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 201\", function () {",
+                      "    pm.response.to.have.status(201);",
+                      "});",
+                      "var jsonData = pm.response.json();",
+                      "pm.collectionVariables.set(\"trainer3_id\", jsonData.id);"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [{ "key": "Content-Type", "value": "application/json" }],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Ondine\"\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/trainers",
+                  "host": ["{{base_url}}"],
+                  "path": ["trainers"]
+                }
+              }
+            },
+            {
+              "name": "Créer Dresseur - Régis",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 201\", function () {",
+                      "    pm.response.to.have.status(201);",
+                      "});",
+                      "var jsonData = pm.response.json();",
+                      "pm.collectionVariables.set(\"trainer4_id\", jsonData.id);"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [{ "key": "Content-Type", "value": "application/json" }],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Régis\"\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/trainers",
+                  "host": ["{{base_url}}"],
+                  "path": ["trainers"]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "1.3 CRÉER POKÉMON",
+          "item": [
+            {
+              "name": "Créer Pokémon - Pikachu",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 201\", function () {",
+                      "    pm.response.to.have.status(201);",
+                      "});",
+                      "var jsonData = pm.response.json();",
+                      "pm.collectionVariables.set(\"pokemon1_id\", jsonData.id);"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [{ "key": "Content-Type", "value": "application/json" }],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Pikachu\",\n  \"lifePoint\": 600,\n  \"trainerId\": {{trainer1_id}}\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/pokemon",
+                  "host": ["{{base_url}}"],
+                  "path": ["pokemon"]
+                }
+              }
+            },
+            {
+              "name": "Créer Pokémon - Salamèche",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 201\", function () {",
+                      "    pm.response.to.have.status(201);",
+                      "});",
+                      "var jsonData = pm.response.json();",
+                      "pm.collectionVariables.set(\"pokemon2_id\", jsonData.id);"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [{ "key": "Content-Type", "value": "application/json" }],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Salamèche\",\n  \"lifePoint\": 550,\n  \"trainerId\": {{trainer1_id}}\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/pokemon",
+                  "host": ["{{base_url}}"],
+                  "path": ["pokemon"]
+                }
+              }
+            },
+            {
+              "name": "Créer Pokémon - Carapuce",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 201\", function () {",
+                      "    pm.response.to.have.status(201);",
+                      "});",
+                      "var jsonData = pm.response.json();",
+                      "pm.collectionVariables.set(\"pokemon3_id\", jsonData.id);"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [{ "key": "Content-Type", "value": "application/json" }],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Carapuce\",\n  \"lifePoint\": 580,\n  \"trainerId\": {{trainer2_id}}\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/pokemon",
+                  "host": ["{{base_url}}"],
+                  "path": ["pokemon"]
+                }
+              }
+            },
+            {
+              "name": "Créer Pokémon - Bulbizarre",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 201\", function () {",
+                      "    pm.response.to.have.status(201);",
+                      "});",
+                      "var jsonData = pm.response.json();",
+                      "pm.collectionVariables.set(\"pokemon4_id\", jsonData.id);"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [{ "key": "Content-Type", "value": "application/json" }],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Bulbizarre\",\n  \"lifePoint\": 560,\n  \"trainerId\": {{trainer2_id}}\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/pokemon",
+                  "host": ["{{base_url}}"],
+                  "path": ["pokemon"]
+                }
+              }
+            },
+            {
+              "name": "Créer Pokémon - Rondoudou",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 201\", function () {",
+                      "    pm.response.to.have.status(201);",
+                      "});",
+                      "var jsonData = pm.response.json();",
+                      "pm.collectionVariables.set(\"pokemon5_id\", jsonData.id);"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [{ "key": "Content-Type", "value": "application/json" }],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Rondoudou\",\n  \"lifePoint\": 650,\n  \"trainerId\": {{trainer3_id}}\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/pokemon",
+                  "host": ["{{base_url}}"],
+                  "path": ["pokemon"]
+                }
+              }
+            },
+            {
+              "name": "Créer Pokémon - Psykokwak",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 201\", function () {",
+                      "    pm.response.to.have.status(201);",
+                      "});",
+                      "var jsonData = pm.response.json();",
+                      "pm.collectionVariables.set(\"pokemon6_id\", jsonData.id);"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [{ "key": "Content-Type", "value": "application/json" }],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Psykokwak\",\n  \"lifePoint\": 500,\n  \"trainerId\": {{trainer3_id}}\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/pokemon",
+                  "host": ["{{base_url}}"],
+                  "path": ["pokemon"]
+                }
+              }
+            },
+            {
+              "name": "Créer Pokémon - Évoli",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 201\", function () {",
+                      "    pm.response.to.have.status(201);",
+                      "});",
+                      "var jsonData = pm.response.json();",
+                      "pm.collectionVariables.set(\"pokemon7_id\", jsonData.id);"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [{ "key": "Content-Type", "value": "application/json" }],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Évoli\",\n  \"lifePoint\": 520,\n  \"trainerId\": {{trainer4_id}}\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/pokemon",
+                  "host": ["{{base_url}}"],
+                  "path": ["pokemon"]
+                }
+              }
+            },
+            {
+              "name": "Créer Pokémon - Dracaufeu",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 201\", function () {",
+                      "    pm.response.to.have.status(201);",
+                      "});",
+                      "var jsonData = pm.response.json();",
+                      "pm.collectionVariables.set(\"pokemon8_id\", jsonData.id);"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [{ "key": "Content-Type", "value": "application/json" }],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Dracaufeu\",\n  \"lifePoint\": 700,\n  \"trainerId\": {{trainer4_id}}\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/pokemon",
+                  "host": ["{{base_url}}"],
+                  "path": ["pokemon"]
+                }
+              }
+            },
+            {
+              "name": "Créer Pokémon - Ronflex",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 201\", function () {",
+                      "    pm.response.to.have.status(201);",
+                      "});",
+                      "var jsonData = pm.response.json();",
+                      "pm.collectionVariables.set(\"pokemon9_id\", jsonData.id);"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [{ "key": "Content-Type", "value": "application/json" }],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Ronflex\",\n  \"lifePoint\": 800,\n  \"trainerId\": {{trainer1_id}}\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/pokemon",
+                  "host": ["{{base_url}}"],
+                  "path": ["pokemon"]
+                }
+              }
+            },
+            {
+              "name": "Créer Pokémon - Mewtwo",
+              "event": [
+                {
+                  "listen": "test",
+                  "script": {
+                    "exec": [
+                      "pm.test(\"Status code is 201\", function () {",
+                      "    pm.response.to.have.status(201);",
+                      "});",
+                      "var jsonData = pm.response.json();",
+                      "pm.collectionVariables.set(\"pokemon10_id\", jsonData.id);"
+                    ],
+                    "type": "text/javascript"
+                  }
+                }
+              ],
+              "request": {
+                "method": "POST",
+                "header": [{ "key": "Content-Type", "value": "application/json" }],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Mewtwo\",\n  \"lifePoint\": 750,\n  \"trainerId\": {{trainer2_id}}\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/pokemon",
+                  "host": ["{{base_url}}"],
+                  "path": ["pokemon"]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "1.4 APPRENDRE ATTAQUES",
+          "item": [
+            {
+              "name": "Pikachu apprend Éclair",
+              "request": {
+                "method": "POST",
+                "header": [{ "key": "Content-Type", "value": "application/json" }],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"attackId\": {{attack1_id}}\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/pokemon/{{pokemon1_id}}/learn-attack",
+                  "host": ["{{base_url}}"],
+                  "path": ["pokemon", "{{pokemon1_id}}", "learn-attack"]
+                }
+              }
+            },
+            {
+              "name": "Pikachu apprend Charge",
+              "request": {
+                "method": "POST",
+                "header": [{ "key": "Content-Type", "value": "application/json" }],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"attackId\": {{attack4_id}}\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/pokemon/{{pokemon1_id}}/learn-attack",
+                  "host": ["{{base_url}}"],
+                  "path": ["pokemon", "{{pokemon1_id}}", "learn-attack"]
+                }
+              }
+            },
+            {
+              "name": "Pikachu apprend Fatal-Foudre",
+              "request": {
+                "method": "POST",
+                "header": [{ "key": "Content-Type", "value": "application/json" }],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"attackId\": {{attack6_id}}\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/pokemon/{{pokemon1_id}}/learn-attack",
+                  "host": ["{{base_url}}"],
+                  "path": ["pokemon", "{{pokemon1_id}}", "learn-attack"]
+                }
+              }
+            },
+            {
+              "name": "Salamèche apprend Flammèche",
+              "request": {
+                "method": "POST",
+                "header": [{ "key": "Content-Type", "value": "application/json" }],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"attackId\": {{attack2_id}}\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/pokemon/{{pokemon2_id}}/learn-attack",
+                  "host": ["{{base_url}}"],
+                  "path": ["pokemon", "{{pokemon2_id}}", "learn-attack"]
+                }
+              }
+            },
+            {
+              "name": "Salamèche apprend Charge",
+              "request": {
+                "method": "POST",
+                "header": [{ "key": "Content-Type", "value": "application/json" }],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"attackId\": {{attack4_id}}\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/pokemon/{{pokemon2_id}}/learn-attack",
+                  "host": ["{{base_url}}"],
+                  "path": ["pokemon", "{{pokemon2_id}}", "learn-attack"]
+                }
+              }
+            },
+            {
+              "name": "Salamèche apprend Plaquage",
+              "request": {
+                "method": "POST",
+                "header": [{ "key": "Content-Type", "value": "application/json" }],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"attackId\": {{attack5_id}}\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/pokemon/{{pokemon2_id}}/learn-attack",
+                  "host": ["{{base_url}}"],
+                  "path": ["pokemon", "{{pokemon2_id}}", "learn-attack"]
+                }
+              }
+            },
+            {
+              "name": "Carapuce apprend Hydrocanon",
+              "request": {
+                "method": "POST",
+                "header": [{ "key": "Content-Type", "value": "application/json" }],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"attackId\": {{attack3_id}}\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/pokemon/{{pokemon3_id}}/learn-attack",
+                  "host": ["{{base_url}}"],
+                  "path": ["pokemon", "{{pokemon3_id}}", "learn-attack"]
+                }
+              }
+            },
+            {
+              "name": "Carapuce apprend Charge",
+              "request": {
+                "method": "POST",
+                "header": [{ "key": "Content-Type", "value": "application/json" }],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"attackId\": {{attack4_id}}\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/pokemon/{{pokemon3_id}}/learn-attack",
+                  "host": ["{{base_url}}"],
+                  "path": ["pokemon", "{{pokemon3_id}}", "learn-attack"]
+                }
+              }
+            },
+            {
+              "name": "Carapuce apprend Plaquage",
+              "request": {
+                "method": "POST",
+                "header": [{ "key": "Content-Type", "value": "application/json" }],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"attackId\": {{attack5_id}}\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/pokemon/{{pokemon3_id}}/learn-attack",
+                  "host": ["{{base_url}}"],
+                  "path": ["pokemon", "{{pokemon3_id}}", "learn-attack"]
+                }
+              }
+            },
+            {
+              "name": "Bulbizarre apprend Charge",
+              "request": {
+                "method": "POST",
+                "header": [{ "key": "Content-Type", "value": "application/json" }],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"attackId\": {{attack4_id}}\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/pokemon/{{pokemon4_id}}/learn-attack",
+                  "host": ["{{base_url}}"],
+                  "path": ["pokemon", "{{pokemon4_id}}", "learn-attack"]
+                }
+              }
+            },
+            {
+              "name": "Bulbizarre apprend Plaquage",
+              "request": {
+                "method": "POST",
+                "header": [{ "key": "Content-Type", "value": "application/json" }],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"attackId\": {{attack5_id}}\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/pokemon/{{pokemon4_id}}/learn-attack",
+                  "host": ["{{base_url}}"],
+                  "path": ["pokemon", "{{pokemon4_id}}", "learn-attack"]
+                }
+              }
+            },
+            {
+              "name": "Rondoudou apprend Charge",
+              "request": {
+                "method": "POST",
+                "header": [{ "key": "Content-Type", "value": "application/json" }],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"attackId\": {{attack4_id}}\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/pokemon/{{pokemon5_id}}/learn-attack",
+                  "host": ["{{base_url}}"],
+                  "path": ["pokemon", "{{pokemon5_id}}", "learn-attack"]
+                }
+              }
+            },
+            {
+              "name": "Rondoudou apprend Plaquage",
+              "request": {
+                "method": "POST",
+                "header": [{ "key": "Content-Type", "value": "application/json" }],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"attackId\": {{attack5_id}}\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/pokemon/{{pokemon5_id}}/learn-attack",
+                  "host": ["{{base_url}}"],
+                  "path": ["pokemon", "{{pokemon5_id}}", "learn-attack"]
+                }
+              }
+            },
+            {
+              "name": "Psykokwak apprend Hydrocanon",
+              "request": {
+                "method": "POST",
+                "header": [{ "key": "Content-Type", "value": "application/json" }],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"attackId\": {{attack3_id}}\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/pokemon/{{pokemon6_id}}/learn-attack",
+                  "host": ["{{base_url}}"],
+                  "path": ["pokemon", "{{pokemon6_id}}", "learn-attack"]
+                }
+              }
+            },
+            {
+              "name": "Psykokwak apprend Charge",
+              "request": {
+                "method": "POST",
+                "header": [{ "key": "Content-Type", "value": "application/json" }],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"attackId\": {{attack4_id}}\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/pokemon/{{pokemon6_id}}/learn-attack",
+                  "host": ["{{base_url}}"],
+                  "path": ["pokemon", "{{pokemon6_id}}", "learn-attack"]
+                }
+              }
+            },
+            {
+              "name": "Évoli apprend Charge",
+              "request": {
+                "method": "POST",
+                "header": [{ "key": "Content-Type", "value": "application/json" }],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"attackId\": {{attack4_id}}\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/pokemon/{{pokemon7_id}}/learn-attack",
+                  "host": ["{{base_url}}"],
+                  "path": ["pokemon", "{{pokemon7_id}}", "learn-attack"]
+                }
+              }
+            },
+            {
+              "name": "Évoli apprend Plaquage",
+              "request": {
+                "method": "POST",
+                "header": [{ "key": "Content-Type", "value": "application/json" }],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"attackId\": {{attack5_id}}\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/pokemon/{{pokemon7_id}}/learn-attack",
+                  "host": ["{{base_url}}"],
+                  "path": ["pokemon", "{{pokemon7_id}}", "learn-attack"]
+                }
+              }
+            },
+            {
+              "name": "Évoli apprend Éclair",
+              "request": {
+                "method": "POST",
+                "header": [{ "key": "Content-Type", "value": "application/json" }],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"attackId\": {{attack1_id}}\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/pokemon/{{pokemon7_id}}/learn-attack",
+                  "host": ["{{base_url}}"],
+                  "path": ["pokemon", "{{pokemon7_id}}", "learn-attack"]
+                }
+              }
+            },
+            {
+              "name": "Dracaufeu apprend Flammèche",
+              "request": {
+                "method": "POST",
+                "header": [{ "key": "Content-Type", "value": "application/json" }],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"attackId\": {{attack2_id}}\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/pokemon/{{pokemon8_id}}/learn-attack",
+                  "host": ["{{base_url}}"],
+                  "path": ["pokemon", "{{pokemon8_id}}", "learn-attack"]
+                }
+              }
+            },
+            {
+              "name": "Dracaufeu apprend Fatal-Foudre",
+              "request": {
+                "method": "POST",
+                "header": [{ "key": "Content-Type", "value": "application/json" }],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"attackId\": {{attack6_id}}\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/pokemon/{{pokemon8_id}}/learn-attack",
+                  "host": ["{{base_url}}"],
+                  "path": ["pokemon", "{{pokemon8_id}}", "learn-attack"]
+                }
+              }
+            },
+            {
+              "name": "Dracaufeu apprend Charge",
+              "request": {
+                "method": "POST",
+                "header": [{ "key": "Content-Type", "value": "application/json" }],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"attackId\": {{attack4_id}}\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/pokemon/{{pokemon8_id}}/learn-attack",
+                  "host": ["{{base_url}}"],
+                  "path": ["pokemon", "{{pokemon8_id}}", "learn-attack"]
+                }
+              }
+            },
+            {
+              "name": "Ronflex apprend Plaquage",
+              "request": {
+                "method": "POST",
+                "header": [{ "key": "Content-Type", "value": "application/json" }],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"attackId\": {{attack5_id}}\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/pokemon/{{pokemon9_id}}/learn-attack",
+                  "host": ["{{base_url}}"],
+                  "path": ["pokemon", "{{pokemon9_id}}", "learn-attack"]
+                }
+              }
+            },
+            {
+              "name": "Ronflex apprend Charge",
+              "request": {
+                "method": "POST",
+                "header": [{ "key": "Content-Type", "value": "application/json" }],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"attackId\": {{attack4_id}}\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/pokemon/{{pokemon9_id}}/learn-attack",
+                  "host": ["{{base_url}}"],
+                  "path": ["pokemon", "{{pokemon9_id}}", "learn-attack"]
+                }
+              }
+            },
+            {
+              "name": "Mewtwo apprend Fatal-Foudre",
+              "request": {
+                "method": "POST",
+                "header": [{ "key": "Content-Type", "value": "application/json" }],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"attackId\": {{attack6_id}}\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/pokemon/{{pokemon10_id}}/learn-attack",
+                  "host": ["{{base_url}}"],
+                  "path": ["pokemon", "{{pokemon10_id}}", "learn-attack"]
+                }
+              }
+            },
+            {
+              "name": "Mewtwo apprend Éclair",
+              "request": {
+                "method": "POST",
+                "header": [{ "key": "Content-Type", "value": "application/json" }],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"attackId\": {{attack1_id}}\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/pokemon/{{pokemon10_id}}/learn-attack",
+                  "host": ["{{base_url}}"],
+                  "path": ["pokemon", "{{pokemon10_id}}", "learn-attack"]
+                }
+              }
+            },
+            {
+              "name": "Mewtwo apprend Hydrocanon",
+              "request": {
+                "method": "POST",
+                "header": [{ "key": "Content-Type", "value": "application/json" }],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"attackId\": {{attack3_id}}\n}"
+                },
+                "url": {
+                  "raw": "{{base_url}}/pokemon/{{pokemon10_id}}/learn-attack",
+                  "host": ["{{base_url}}"],
+                  "path": ["pokemon", "{{pokemon10_id}}", "learn-attack"]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "2. VÉRIFICATIONS",
+      "item": [
+        {
+          "name": "Lister toutes les attaques",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/attacks",
+              "host": ["{{base_url}}"],
+              "path": ["attacks"]
+            }
+          }
+        },
+        {
+          "name": "Lister tous les dresseurs",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/trainers",
+              "host": ["{{base_url}}"],
+              "path": ["trainers"]
+            }
+          }
+        },
+        {
+          "name": "Lister tous les Pokémon",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/pokemon",
+              "host": ["{{base_url}}"],
+              "path": ["pokemon"]
+            }
+          }
+        },
+        {
+          "name": "Voir Sacha avec ses Pokémon",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/trainers/{{trainer1_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["trainers", "{{trainer1_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Voir Pikachu avec ses attaques",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/pokemon/{{pokemon1_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["pokemon", "{{pokemon1_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Voir Ondine avec ses Pokémon",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/trainers/{{trainer3_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["trainers", "{{trainer3_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Voir Régis avec ses Pokémon",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/trainers/{{trainer4_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["trainers", "{{trainer4_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Voir Dracaufeu avec ses attaques",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/pokemon/{{pokemon8_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["pokemon", "{{pokemon8_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Voir Mewtwo avec ses attaques",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/pokemon/{{pokemon10_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["pokemon", "{{pokemon10_id}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "3. TESTS FONCTIONNALITÉS",
+      "item": [
+        {
+          "name": "Soigner tous les Pokémon de Sacha",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/trainers/{{trainer1_id}}/heal",
+              "host": ["{{base_url}}"],
+              "path": ["trainers", "{{trainer1_id}}", "heal"]
+            }
+          }
+        },
+        {
+          "name": "Combat Aléatoire (Random Challenge)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"trainer1Id\": {{trainer1_id}},\n  \"trainer2Id\": {{trainer2_id}}\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/battles/random-challenge",
+              "host": ["{{base_url}}"],
+              "path": ["battles", "random-challenge"]
+            }
+          }
+        },
+        {
+          "name": "Arène 1 (100 combats aléatoires)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"trainer1Id\": {{trainer1_id}},\n  \"trainer2Id\": {{trainer2_id}}\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/battles/arena1",
+              "host": ["{{base_url}}"],
+              "path": ["battles", "arena1"]
+            }
+          }
+        },
+        {
+          "name": "Combat Déterministe",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"trainer1Id\": {{trainer1_id}},\n  \"trainer2Id\": {{trainer2_id}}\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/battles/deterministic-challenge",
+              "host": ["{{base_url}}"],
+              "path": ["battles", "deterministic-challenge"]
+            }
+          }
+        },
+        {
+          "name": "Arène 2 (100 combats déterministes)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"trainer1Id\": {{trainer1_id}},\n  \"trainer2Id\": {{trainer2_id}}\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/battles/arena2",
+              "host": ["{{base_url}}"],
+              "path": ["battles", "arena2"]
+            }
+          }
+        },
+        {
+          "name": "Combat Aléatoire - Ondine vs Régis",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"trainer1Id\": {{trainer3_id}},\n  \"trainer2Id\": {{trainer4_id}}\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/battles/random-challenge",
+              "host": ["{{base_url}}"],
+              "path": ["battles", "random-challenge"]
+            }
+          }
+        },
+        {
+          "name": "Soigner tous les Pokémon d'Ondine",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/trainers/{{trainer3_id}}/heal",
+              "host": ["{{base_url}}"],
+              "path": ["trainers", "{{trainer3_id}}", "heal"]
+            }
+          }
+        },
+        {
+          "name": "Soigner tous les Pokémon de Régis",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/trainers/{{trainer4_id}}/heal",
+              "host": ["{{base_url}}"],
+              "path": ["trainers", "{{trainer4_id}}", "heal"]
+            }
+          }
+        },
+        {
+          "name": "Arène 1 - Ondine vs Régis",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"trainer1Id\": {{trainer3_id}},\n  \"trainer2Id\": {{trainer4_id}}\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/battles/arena1",
+              "host": ["{{base_url}}"],
+              "path": ["battles", "arena1"]
+            }
+          }
+        },
+        {
+          "name": "Combat Déterministe - Sacha vs Ondine",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"trainer1Id\": {{trainer1_id}},\n  \"trainer2Id\": {{trainer3_id}}\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/battles/deterministic-challenge",
+              "host": ["{{base_url}}"],
+              "path": ["battles", "deterministic-challenge"]
+            }
+          }
+        },
+        {
+          "name": "Arène 2 - Pierre vs Régis",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"trainer1Id\": {{trainer2_id}},\n  \"trainer2Id\": {{trainer4_id}}\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/battles/arena2",
+              "host": ["{{base_url}}"],
+              "path": ["battles", "arena2"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "4. NETTOYAGE",
+      "item": [
+        {
+          "name": "Supprimer Pikachu",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/pokemon/{{pokemon1_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["pokemon", "{{pokemon1_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Supprimer Salamèche",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/pokemon/{{pokemon2_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["pokemon", "{{pokemon2_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Supprimer Carapuce",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/pokemon/{{pokemon3_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["pokemon", "{{pokemon3_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Supprimer Bulbizarre",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/pokemon/{{pokemon4_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["pokemon", "{{pokemon4_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Supprimer Sacha",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/trainers/{{trainer1_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["trainers", "{{trainer1_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Supprimer Pierre",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/trainers/{{trainer2_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["trainers", "{{trainer2_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Supprimer toutes les attaques",
+          "item": [
+            {
+              "name": "Supprimer Éclair",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/attacks/{{attack1_id}}",
+                  "host": ["{{base_url}}"],
+                  "path": ["attacks", "{{attack1_id}}"]
+                }
+              }
+            },
+            {
+              "name": "Supprimer Flammèche",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/attacks/{{attack2_id}}",
+                  "host": ["{{base_url}}"],
+                  "path": ["attacks", "{{attack2_id}}"]
+                }
+              }
+            },
+            {
+              "name": "Supprimer Hydrocanon",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/attacks/{{attack3_id}}",
+                  "host": ["{{base_url}}"],
+                  "path": ["attacks", "{{attack3_id}}"]
+                }
+              }
+            },
+            {
+              "name": "Supprimer Charge",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/attacks/{{attack4_id}}",
+                  "host": ["{{base_url}}"],
+                  "path": ["attacks", "{{attack4_id}}"]
+                }
+              }
+            },
+            {
+              "name": "Supprimer Plaquage",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/attacks/{{attack5_id}}",
+                  "host": ["{{base_url}}"],
+                  "path": ["attacks", "{{attack5_id}}"]
+                }
+              }
+            },
+            {
+              "name": "Supprimer Fatal-Foudre",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/attacks/{{attack6_id}}",
+                  "host": ["{{base_url}}"],
+                  "path": ["attacks", "{{attack6_id}}"]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "name": "4.3 TESTS SUPPLÉMENTAIRES",
+          "item": [
+            {
+              "name": "Voir statistiques Sacha après combats",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/trainers/{{trainer1_id}}",
+                  "host": ["{{base_url}}"],
+                  "path": ["trainers", "{{trainer1_id}}"]
+                }
+              }
+            },
+            {
+              "name": "Voir statistiques Pierre après combats",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/trainers/{{trainer2_id}}",
+                  "host": ["{{base_url}}"],
+                  "path": ["trainers", "{{trainer2_id}}"]
+                }
+              }
+            },
+            {
+              "name": "Voir statistiques Ondine après combats",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/trainers/{{trainer3_id}}",
+                  "host": ["{{base_url}}"],
+                  "path": ["trainers", "{{trainer3_id}}"]
+                }
+              }
+            },
+            {
+              "name": "Voir statistiques Régis après combats",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/trainers/{{trainer4_id}}",
+                  "host": ["{{base_url}}"],
+                  "path": ["trainers", "{{trainer4_id}}"]
+                }
+              }
+            },
+            {
+              "name": "Supprimer Psykokwak",
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/pokemon/{{pokemon6_id}}",
+                  "host": ["{{base_url}}"],
+                  "path": ["pokemon", "{{pokemon6_id}}"]
+                }
+              }
+            },
+            {
+              "name": "Vérifier Ondine après suppression Pokémon",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{base_url}}/trainers/{{trainer3_id}}",
+                  "host": ["{{base_url}}"],
+                  "path": ["trainers", "{{trainer3_id}}"]
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

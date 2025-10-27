@@ -41,9 +41,11 @@ class Pokemon {
       throw new Error(`${this.name} n'a plus d'attaques disponibles`);
     }
 
+    // Select a random available attack
     const attack = availableAttacks[Math.floor(Math.random() * availableAttacks.length)];
     attack.use();
 
+    // Calculate damage (cannot exceed target's current life points)
     const damage = Math.min(attack.damage, target.lifePoint);
     target.takeDamage(damage);
 
@@ -51,6 +53,7 @@ class Pokemon {
   }
 
   private takeDamage(damage: number): void {
+    // Prevent negative life points
     this.lifePoint = Math.max(0, this.lifePoint - damage);
   }
 

@@ -21,6 +21,11 @@ app.use('/pokemon', pokemonRoutes);
 app.use('/attacks', attackRoutes);
 app.use('/battles', battleRoutes);
 
+app.use('/api/trainers', trainerRoutes);
+app.use('/api/pokemon', pokemonRoutes);
+app.use('/api/attacks', attackRoutes);
+app.use('/api/battles', battleRoutes);
+
 async function startServer() {
   try {
     await database.connect();

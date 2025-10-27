@@ -44,6 +44,8 @@ class Trainer {
     if (alivePokemons.length === 0) {
       return null;
     }
+
+    // Return a random alive Pokemon
     return alivePokemons[Math.floor(Math.random() * alivePokemons.length)];
   }
 
