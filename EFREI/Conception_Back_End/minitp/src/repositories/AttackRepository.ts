@@ -1,5 +1,5 @@
-import database from '../config/database';
-import Attack from '../models/Attack';
+import database from '@/config/database';
+import Attack from '@/models/Attack';
 
 class AttackRepository {
   constructor() {}

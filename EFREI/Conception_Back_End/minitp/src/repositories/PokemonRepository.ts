@@ -1,6 +1,6 @@
-import database from '../config/database';
-import Attack from '../models/Attack';
-import Pokemon from '../models/Pokemon';
+import database from '@/config/database';
+import Attack from '@/models/Attack';
+import Pokemon from '@/models/Pokemon';
 
 class PokemonRepository {
   constructor() {}

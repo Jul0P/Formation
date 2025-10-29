@@ -1,7 +1,7 @@
+import TrainerController from '@/controllers/TrainerController';
+import TrainerRepository from '@/repositories/TrainerRepository';
+import TrainerService from '@/services/TrainerService';
 import { Router } from 'express';
-import TrainerController from '../controllers/TrainerController';
-import TrainerRepository from '../repositories/TrainerRepository';
-import TrainerService from '../services/TrainerService';
 
 const router = Router();
 

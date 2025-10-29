@@ -1,5 +1,5 @@
-import Trainer from '../models/Trainer';
-import TrainerRepository from '../repositories/TrainerRepository';
+import Trainer from '@/models/Trainer';
+import TrainerRepository from '@/repositories/TrainerRepository';
 
 class TrainerService {
   constructor(private trainerRepository: TrainerRepository) {}

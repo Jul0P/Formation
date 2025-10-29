@@ -1,5 +1,5 @@
+import TrainerService from '@/services/TrainerService';
 import { Request, Response } from 'express';
-import TrainerService from '../services/TrainerService';
 
 class TrainerController {
   constructor(private trainerService: TrainerService) {}

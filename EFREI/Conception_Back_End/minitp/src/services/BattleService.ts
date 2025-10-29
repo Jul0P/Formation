@@ -1,13 +1,7 @@
-import Pokemon from '../models/Pokemon';
-import Trainer from '../models/Trainer';
+import Pokemon from '@/models/Pokemon';
+import Trainer from '@/models/Trainer';
+import { BattleResult } from '@/types/index';
 import TrainerService from './TrainerService';
-
-interface BattleResult {
-  winner: Trainer;
-  loser: Trainer;
-  rounds: number;
-  log: string[];
-}
 
 class BattleService {
   constructor(private trainerService: TrainerService) {}

@@ -1,5 +1,5 @@
+import PokemonService from '@/services/PokemonService';
 import { Request, Response } from 'express';
-import PokemonService from '../services/PokemonService';
 
 class PokemonController {
   constructor(private pokemonService: PokemonService) {}

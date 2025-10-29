@@ -1,5 +1,5 @@
-import database from '../config/database';
-import Trainer from '../models/Trainer';
+import database from '@/config/database';
+import Trainer from '@/models/Trainer';
 import PokemonRepository from './PokemonRepository';
 
 class TrainerRepository {

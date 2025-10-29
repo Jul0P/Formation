@@ -1,8 +1,8 @@
+import PokemonController from '@/controllers/PokemonController';
+import AttackRepository from '@/repositories/AttackRepository';
+import PokemonRepository from '@/repositories/PokemonRepository';
+import PokemonService from '@/services/PokemonService';
 import { Router } from 'express';
-import PokemonController from '../controllers/PokemonController';
-import AttackRepository from '../repositories/AttackRepository';
-import PokemonRepository from '../repositories/PokemonRepository';
-import PokemonService from '../services/PokemonService';
 
 const router = Router();
 

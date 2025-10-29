@@ -1,5 +1,5 @@
-import Attack from '../models/Attack';
-import AttackRepository from '../repositories/AttackRepository';
+import Attack from '@/models/Attack';
+import AttackRepository from '@/repositories/AttackRepository';
 
 class AttackService {
   constructor(private attackRepository: AttackRepository) {}

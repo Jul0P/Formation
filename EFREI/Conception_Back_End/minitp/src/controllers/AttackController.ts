@@ -1,5 +1,5 @@
+import AttackService from '@/services/AttackService';
 import { Request, Response } from 'express';
-import AttackService from '../services/AttackService';
 
 class AttackController {
   constructor(private attackService: AttackService) {}

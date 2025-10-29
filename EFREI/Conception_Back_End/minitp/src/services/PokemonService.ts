@@ -1,6 +1,6 @@
-import Pokemon from '../models/Pokemon';
-import AttackRepository from '../repositories/AttackRepository';
-import PokemonRepository from '../repositories/PokemonRepository';
+import Pokemon from '@/models/Pokemon';
+import AttackRepository from '@/repositories/AttackRepository';
+import PokemonRepository from '@/repositories/PokemonRepository';
 
 class PokemonService {
   constructor(private pokemonRepository: PokemonRepository, private attackRepository: AttackRepository) {}

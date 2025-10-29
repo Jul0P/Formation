@@ -1,8 +1,8 @@
+import BattleController from '@/controllers/BattleController';
+import TrainerRepository from '@/repositories/TrainerRepository';
+import BattleService from '@/services/BattleService';
+import TrainerService from '@/services/TrainerService';
 import { Router } from 'express';
-import BattleController from '../controllers/BattleController';
-import TrainerRepository from '../repositories/TrainerRepository';
-import BattleService from '../services/BattleService';
-import TrainerService from '../services/TrainerService';
 
 const router = Router();
 

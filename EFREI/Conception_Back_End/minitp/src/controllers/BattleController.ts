@@ -1,6 +1,6 @@
+import BattleService from '@/services/BattleService';
+import TrainerService from '@/services/TrainerService';
 import { Request, Response } from 'express';
-import BattleService from '../services/BattleService';
-import TrainerService from '../services/TrainerService';
 
 class BattleController {
   constructor(private battleService: BattleService, private trainerService: TrainerService) {}

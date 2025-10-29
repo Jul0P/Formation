@@ -1,7 +1,7 @@
+import AttackController from '@/controllers/AttackController';
+import AttackRepository from '@/repositories/AttackRepository';
+import AttackService from '@/services/AttackService';
 import { Router } from 'express';
-import AttackController from '../controllers/AttackController';
-import AttackRepository from '../repositories/AttackRepository';
-import AttackService from '../services/AttackService';
 
 const router = Router();
 
