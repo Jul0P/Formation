@@ -7,7 +7,12 @@ class AttackController {
   /** GET /attacks */
   public getAll = async (req: Request, res: Response): Promise<void> => {
     const attacks = await this.attackService.getAllAttacks();
-    res.json(attacks);
+
+    if (req.accepts('html')) {
+      res.render('attacks/index', { attacks, title: 'Liste des attaques' });
+    } else {
+      res.json(attacks);
+    }
   };
 
   /** GET /attacks/:id */
@@ -19,7 +24,11 @@ class AttackController {
       return;
     }
 
-    res.json(attack);
+    if (req.accepts('html')) {
+      res.render('attacks/show', { attack, title: attack.name });
+    } else {
+      res.json(attack);
+    }
   };
 
   /** POST /attacks */

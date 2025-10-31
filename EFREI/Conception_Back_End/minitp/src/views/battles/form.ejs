@@ -1,0 +1,44 @@
+<h2 style="margin-bottom: 1.5rem">Lancer un combat</h2>
+
+<div class="card">
+  <form method="POST" action="/battles/random-challenge">
+    <div style="margin-bottom: 1rem">
+      <label style="display: block; font-size: 0.875rem; margin-bottom: 0.25rem">Dresseur 1</label>
+      <select
+        name="trainer1Id"
+        required
+        style="width: 100%; padding: 0.5rem; border: 1px solid hsl(0 0% 90%); border-radius: 0.375rem; font-size: 0.875rem"
+      >
+        <% trainers.forEach(trainer => { %>
+        <option value="<%= trainer.id %>"><%= trainer.name %> (Niv. <%= trainer.level %>)</option>
+        <% }); %>
+      </select>
+    </div>
+
+    <div style="margin-bottom: 1.5rem">
+      <label style="display: block; font-size: 0.875rem; margin-bottom: 0.25rem">Dresseur 2</label>
+      <select
+        name="trainer2Id"
+        required
+        style="width: 100%; padding: 0.5rem; border: 1px solid hsl(0 0% 90%); border-radius: 0.375rem; font-size: 0.875rem"
+      >
+        <% trainers.forEach(trainer => { %>
+        <option value="<%= trainer.id %>"><%= trainer.name %> (Niv. <%= trainer.level %>)</option>
+        <% }); %>
+      </select>
+    </div>
+
+    <div style="display: flex; gap: 0.5rem; flex-wrap: wrap">
+      <button type="submit" formaction="/battles/random-challenge" class="btn">Aléatoire</button>
+      <button type="submit" formaction="/battles/deterministic-challenge" class="btn">Déterministe</button>
+      <button type="submit" formaction="/battles/arena1" class="btn">Arène 1</button>
+      <button type="submit" formaction="/battles/arena2" class="btn">Arène 2</button>
+    </div>
+  </form>
+</div>
+
+<% if (trainers.length < 2) { %>
+<div class="card" style="background: hsl(45 100% 96%); border-left: 3px solid hsl(45 100% 50%)">
+  <p style="font-size: 0.875rem">Au moins 2 dresseurs requis</p>
+</div>
+<% } %>

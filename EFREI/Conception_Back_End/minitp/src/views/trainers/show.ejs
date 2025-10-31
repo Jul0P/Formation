@@ -1,0 +1,31 @@
+<h2 style="margin-bottom: 1.5rem"><%= trainer.name %></h2>
+
+<div class="card">
+  <div style="font-size: 0.875rem; color: hsl(0 0% 40%)">
+    <div>ID <%= trainer.id %></div>
+    <div>Niveau <%= trainer.level %> • <%= trainer.experience %>/10 XP</div>
+  </div>
+</div>
+
+<div class="card">
+  <h3 style="margin-bottom: 1rem">Équipe (<%= trainer.getPokemons().length %>)</h3>
+  <% if (trainer.getPokemons().length === 0) { %>
+  <p style="color: hsl(0 0% 40%); font-size: 0.875rem">Aucun Pokémon</p>
+  <% } else { %>
+  <div class="grid">
+    <% trainer.getPokemons().forEach(pokemon => { %>
+    <div class="card">
+      <h4 style="margin-bottom: 0.5rem"><%= pokemon.name %></h4>
+      <div style="font-size: 0.875rem; color: hsl(0 0% 40%); margin-bottom: 0.5rem"><%= pokemon.lifePoint %>/<%= pokemon.maxLifePoint %> PV</div>
+      <div style="font-size: 0.75rem">
+        <% pokemon.getAttacks().forEach(attack => { %>
+        <div style="margin-top: 0.25rem; color: hsl(0 0% 50%)"><%= attack.name %> (<%= attack.getRemainingUses() %>)</div>
+        <% }); %>
+      </div>
+    </div>
+    <% }); %>
+  </div>
+  <% } %>
+</div>
+
+<a href="/trainers" class="btn">Retour</a>

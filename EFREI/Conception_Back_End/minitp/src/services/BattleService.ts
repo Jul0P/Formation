@@ -12,7 +12,7 @@ class BattleService {
 
     trainer1.healAllPokemons();
     trainer2.healAllPokemons();
-    log.push('🏥 Les dresseurs soignent leurs Pokémon à la taverne');
+    log.push('Les dresseurs soignent leurs Pokémon à la taverne');
 
     const pokemon1 = trainer1.getRandomAlivePokemon()!;
     const pokemon2 = trainer2.getRandomAlivePokemon()!;
@@ -35,7 +35,7 @@ class BattleService {
   /** 100 random battles - winner determined by level/XP */
   public async arena1(trainer1: Trainer, trainer2: Trainer): Promise<BattleResult> {
     const log: string[] = [];
-    log.push('🏟️ ARÈNE 1 - 100 combats aléatoires !');
+    log.push('ARÈNE 1 - 100 combats aléatoires !');
 
     let wins1 = 0;
     let wins2 = 0;
@@ -46,11 +46,11 @@ class BattleService {
       else wins2++;
 
       if (i % 20 === 0) {
-        log.push(`--- Après ${i} combats: ${trainer1.name} ${wins1} - ${wins2} ${trainer2.name} ---`);
+        log.push(`Après ${i} combats: ${trainer1.name} ${wins1} - ${wins2} ${trainer2.name}`);
       }
     }
 
-    log.push(`\n📊 Résultat final: ${trainer1.name} ${wins1} - ${wins2} ${trainer2.name}`);
+    log.push(`\nRésultat final: ${trainer1.name} ${wins1} - ${wins2} ${trainer2.name}`);
 
     let winner: Trainer, loser: Trainer;
 
@@ -68,7 +68,7 @@ class BattleService {
       loser = trainer1;
     }
 
-    log.push(`🏆 ${winner.name} remporte l'arène (Niveau: ${winner.level}, XP: ${winner.experience})`);
+    log.push(`${winner.name} remporte l'arène (Niveau: ${winner.level}, XP: ${winner.experience})`);
 
     return { winner, loser, rounds: 100, log };
   }
@@ -102,25 +102,25 @@ class BattleService {
   /** 100 deterministic battles until one trainer has no Pokémon left (no healing) */
   public async arena2(trainer1: Trainer, trainer2: Trainer): Promise<BattleResult> {
     const log: string[] = [];
-    log.push('🏟️ ARÈNE 2 - 100 combats déterministes !');
+    log.push('ARÈNE 2 - 100 combats déterministes !');
 
     for (let i = 1; i <= 100; i++) {
       if (!trainer1.hasAlivePokemons() || !trainer2.hasAlivePokemons()) {
-        log.push(`\n⚠️ Combat arrêté au round ${i}: un dresseur n'a plus de Pokémon`);
+        log.push(`\nCombat arrêté au round ${i}: un dresseur n'a plus de Pokémon`);
         break;
       }
 
       await this.deterministicChallenge(trainer1, trainer2);
 
       if (i % 20 === 0) {
-        log.push(`--- Round ${i} terminé ---`);
+        log.push(`Round ${i} terminé`);
       }
     }
 
     const winner = trainer1.hasAlivePokemons() ? trainer1 : trainer2;
     const loser = trainer1.hasAlivePokemons() ? trainer2 : trainer1;
 
-    log.push(`\n🏆 ${winner.name} remporte l'arène 2 !`);
+    log.push(`\n${winner.name} remporte l'arène 2 !`);
 
     return { winner, loser, rounds: 100, log };
   }
@@ -133,23 +133,23 @@ class BattleService {
       rounds++;
 
       if (pokemon1.getAvailableAttacks().length === 0 && pokemon2.getAvailableAttacks().length === 0) {
-        log.push("💤 Plus d'attaques disponibles, match nul !");
+        log.push("Plus d'attaques disponibles, match nul !");
         break;
       }
 
       if (pokemon1.getAvailableAttacks().length > 0) {
         const { attack, damage } = pokemon1.attackPokemon(pokemon2);
-        log.push(`⚔️ ${pokemon1.name} utilise ${attack.name} (-${damage} PV) → ${pokemon2.name}: ${pokemon2.lifePoint} PV`);
+        log.push(`${pokemon1.name} utilise ${attack.name} (-${damage} PV) → ${pokemon2.name}: ${pokemon2.lifePoint} PV`);
       }
 
       if (pokemon2.isAlive() && pokemon2.getAvailableAttacks().length > 0) {
         const { attack, damage } = pokemon2.attackPokemon(pokemon1);
-        log.push(`⚔️ ${pokemon2.name} utilise ${attack.name} (-${damage} PV) → ${pokemon1.name}: ${pokemon1.lifePoint} PV`);
+        log.push(`${pokemon2.name} utilise ${attack.name} (-${damage} PV) → ${pokemon1.name}: ${pokemon1.lifePoint} PV`);
       }
     }
 
     const winner = pokemon1.isAlive() ? pokemon1 : pokemon2;
-    log.push(`🏆 ${winner.name} remporte le combat !`);
+    log.push(`${winner.name} remporte le combat !`);
 
     return { winner, rounds };
   }

@@ -1,0 +1,11 @@
+<h2 style="margin-bottom: 1.5rem"><%= attack.name %></h2>
+
+<div class="card">
+  <div style="font-size: 0.875rem; color: hsl(0 0% 40%)">
+    <div>ID <%= attack.id %></div>
+    <div><%= attack.damage %> dégâts</div>
+    <div><%= attack.currentUsage %>/<%= attack.usageLimit %> utilisations</div>
+  </div>
+</div>
+
+<a href="/attacks" class="btn">Retour</a>

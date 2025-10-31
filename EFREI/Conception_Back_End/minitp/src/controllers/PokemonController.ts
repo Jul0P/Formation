@@ -7,7 +7,12 @@ class PokemonController {
   /** GET /pokemon */
   public getAll = async (req: Request, res: Response): Promise<void> => {
     const pokemons = await this.pokemonService.getAllPokemons();
-    res.json(pokemons);
+
+    if (req.accepts('html')) {
+      res.render('pokemon/index', { pokemons, title: 'Liste des pokémon' });
+    } else {
+      res.json(pokemons);
+    }
   };
 
   /** GET /pokemon/:id */
@@ -19,7 +24,11 @@ class PokemonController {
       return;
     }
 
-    res.json(pokemon);
+    if (req.accepts('html')) {
+      res.render('pokemon/show', { pokemon, title: pokemon.name });
+    } else {
+      res.json(pokemon);
+    }
   };
 
   /** POST /pokemon/:id/learn-attack */

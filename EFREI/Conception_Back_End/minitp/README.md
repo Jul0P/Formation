@@ -1,11 +1,12 @@
 # 🎮 Pokémon Battle API - Mini TP
 
-API REST de gestion de combats Pokémon avec système de dresseurs, d'attaques et d'arènes. Développé en TypeScript avec Express et PostgreSQL.
+API REST & Interface Web de gestion de combats Pokémon avec système de dresseurs, d'attaques et d'arènes. Développé en TypeScript avec Express, PostgreSQL et EJS.
 
 ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
 ![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
 ![Express](https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
+![EJS](https://img.shields.io/badge/EJS-B4CA65?style=for-the-badge&logo=ejs&logoColor=black)
 
 ---
 
@@ -83,30 +84,52 @@ minitp/
 │   ├── server.ts                      # Point d'entrée du serveur
 │   ├── config/
 │   │   └── database.ts                # Configuration PostgreSQL
+│   ├── types/
+│   │   └── index.ts                   # Interfaces
 │   ├── models/                        # Modèles métier
 │   │   ├── Attack.ts                  # Modèle Attaque
 │   │   ├── Pokemon.ts                 # Modèle Pokémon
 │   │   └── Trainer.ts                 # Modèle Dresseur
 │   ├── repositories/                  # Couche d'accès aux données
 │   │   ├── AttackRepository.ts        # CRUD Attaques
-│   │   ├── PokemonRepository.ts       # CRUD Pokémon
+│   │   ├── PokemonRepository.ts       # CRUD Pokémons
 │   │   └── TrainerRepository.ts       # CRUD Dresseurs
-│   ├── controllers/                   # Logique métier
+│   ├── services/                      # Orchestration métier
+│   │   ├── AttackService.ts           # Logique métier attaques
+│   │   ├── PokemonService.ts          # Logique métier pokémons
+│   │   ├── TrainerService.ts          # Logique métier dresseurs
+│   │   └── BattleService.ts           # Logique de combat
+│   ├── controllers/                   # Handlers HTTP
 │   │   ├── AttackController.ts        # Routes /attacks
 │   │   ├── PokemonController.ts       # Routes /pokemon
 │   │   ├── TrainerController.ts       # Routes /trainers
 │   │   └── BattleController.ts        # Routes /battles
-│   ├── routes/                        # Définition des routes
-│   │   ├── attackRoutes.ts
+│   ├── routes/                        # Définition des routes Express
+│   │   ├── attackRoutes.ts            # Injection des dépendances
 │   │   ├── pokemonRoutes.ts
 │   │   ├── trainerRoutes.ts
 │   │   └── battleRoutes.ts
+│   ├── views/                         # Vues EJS (interface web)
+│   │   ├── layout.ejs                 # Layout principal (minimal design)
+│   │   ├── index.ejs                  # Page d'accueil
+│   │   ├── trainers/
+│   │   │   ├── index.ejs              # Liste des dresseurs
+│   │   │   └── show.ejs               # Détail dresseur + pokémons
+│   │   ├── pokemon/
+│   │   │   ├── index.ejs              # Liste des pokémons
+│   │   │   └── show.ejs               # Détail pokémon + attaques
+│   │   ├── attack/
+│   │   │   ├── index.ejs              # Liste des attaques
+│   │   │   └── show.ejs               # Détail attaque
+│   │   └── battle/
+│   │       ├── form.ejs               # Formulaire de combat
+│   │       └── result.ejs             # Résultat du combat
 │   └── middlewares/
 │       └── loggerMiddleware.ts        # Logs des requêtes
-├── schema.sql                         # Schéma de la base de données
-├── package.json                       # Dépendances du projet
-├── tsconfig.json                      # Configuration TypeScript
-└── Pokemon_API.postman_collection.json # Collection Postman complète
+├── schema.sql                         # Schéma
+├── package.json                       # Dépendances
+├── tsconfig.json                      # Config TypeScript
+└── Pokemon_API.postman_collection.json # Collection Postman
 ```
 
 ---
@@ -115,41 +138,55 @@ minitp/
 
 ### 🧑‍🎓 Dresseurs (Trainers)
 
-| Méthode | Endpoint                 | Description                        |
-| ------- | ------------------------ | ---------------------------------- |
-| GET     | `/api/trainers`          | Lister tous les dresseurs          |
-| GET     | `/api/trainers/:id`      | Voir un dresseur avec ses Pokémon  |
-| POST    | `/api/trainers`          | Créer un nouveau dresseur          |
-| POST    | `/api/trainers/:id/heal` | Soigner tous les Pokémon (taverne) |
-| DELETE  | `/api/trainers/:id`      | Supprimer un dresseur              |
+| Méthode | Endpoint                 | Description                        | Format |
+| ------- | ------------------------ | ---------------------------------- | ------ |
+| GET     | `/trainers`              | Page web liste des dresseurs       | HTML   |
+| GET     | `/trainers/:id`          | Page web détail d'un dresseur      | HTML   |
+| GET     | `/api/trainers`          | Lister tous les dresseurs          | JSON   |
+| GET     | `/api/trainers/:id`      | Voir un dresseur avec ses Pokémon  | JSON   |
+| POST    | `/api/trainers`          | Créer un nouveau dresseur          | JSON   |
+| POST    | `/api/trainers/:id/heal` | Soigner tous les Pokémon (taverne) | JSON   |
+| DELETE  | `/api/trainers/:id`      | Supprimer un dresseur              | JSON   |
 
 ### 🐉 Pokémon
 
-| Méthode | Endpoint                        | Description                       |
-| ------- | ------------------------------- | --------------------------------- |
-| GET     | `/api/pokemon`                  | Lister tous les Pokémon           |
-| GET     | `/api/pokemon/:id`              | Voir un Pokémon avec ses attaques |
-| POST    | `/api/pokemon`                  | Créer un nouveau Pokémon          |
-| POST    | `/api/pokemon/:id/learn-attack` | Apprendre une attaque (max 4)     |
-| DELETE  | `/api/pokemon/:id`              | Supprimer un Pokémon              |
+| Méthode | Endpoint                        | Description                       | Format |
+| ------- | ------------------------------- | --------------------------------- | ------ |
+| GET     | `/pokemon`                      | Page web liste des pokémons       | HTML   |
+| GET     | `/pokemon/:id`                  | Page web détail d'un pokémon      | HTML   |
+| GET     | `/api/pokemon`                  | Lister tous les Pokémon           | JSON   |
+| GET     | `/api/pokemon/:id`              | Voir un Pokémon avec ses attaques | JSON   |
+| POST    | `/api/pokemon`                  | Créer un nouveau Pokémon          | JSON   |
+| POST    | `/api/pokemon/:id/learn-attack` | Apprendre une attaque (max 4)     | JSON   |
+| DELETE  | `/api/pokemon/:id`              | Supprimer un Pokémon              | JSON   |
 
 ### ⚔️ Attaques (Attacks)
 
-| Méthode | Endpoint           | Description                |
-| ------- | ------------------ | -------------------------- |
-| GET     | `/api/attacks`     | Lister toutes les attaques |
-| GET     | `/api/attacks/:id` | Voir une attaque           |
-| POST    | `/api/attacks`     | Créer une nouvelle attaque |
-| DELETE  | `/api/attacks/:id` | Supprimer une attaque      |
+| Méthode | Endpoint           | Description                   | Format |
+| ------- | ------------------ | ----------------------------- | ------ |
+| GET     | `/attacks`         | Page web liste des attaques   | HTML   |
+| GET     | `/attacks/:id`     | Page web détail d'une attaque | HTML   |
+| GET     | `/api/attacks`     | Lister toutes les attaques    | JSON   |
+| GET     | `/api/attacks/:id` | Voir une attaque              | JSON   |
+| POST    | `/api/attacks`     | Créer une nouvelle attaque    | JSON   |
+| DELETE  | `/api/attacks/:id` | Supprimer une attaque         | JSON   |
 
 ### 🏟️ Combats (Battles)
 
-| Méthode | Endpoint                               | Description                                      |
-| ------- | -------------------------------------- | ------------------------------------------------ |
-| POST    | `/api/battles/random-challenge`        | Combat aléatoire (1 Pokémon random par dresseur) |
-| POST    | `/api/battles/deterministic-challenge` | Combat déterministe (Pokémon avec le plus de PV) |
-| POST    | `/api/battles/arena1`                  | Arène 1 (100 combats aléatoires)                 |
-| POST    | `/api/battles/arena2`                  | Arène 2 (100 combats déterministes)              |
+| Méthode | Endpoint                               | Description                                      | Format |
+| ------- | -------------------------------------- | ------------------------------------------------ | ------ |
+| GET     | `/battles/form`                        | Formulaire de combat (interface web)             | HTML   |
+| POST    | `/api/battles/random-challenge`        | Combat aléatoire (1 Pokémon random par dresseur) | JSON   |
+| POST    | `/api/battles/deterministic-challenge` | Combat déterministe (Pokémon avec le plus de PV) | JSON   |
+| POST    | `/api/battles/arena1`                  | Arène 1 (100 combats aléatoires)                 | JSON   |
+| POST    | `/api/battles/arena2`                  | Arène 2 (100 combats déterministes)              | JSON   |
+
+### 🎨 Système de Combat
+
+- **Random Challenge** : Heal → Pokémon aléatoire → Combat → +1 XP gagnant
+- **Deterministic Challenge** : Pokémon avec le plus de HP → Combat → +1 XP (sans heal)
+- **Arena 1** : 100 random challenges → Le dresseur avec le niveau/XP le plus élevé gagne
+- **Arena 2** : 100 deterministic challenges → Combat jusqu'à ce qu'un dresseur n'ait plus de Pokémon vivant
 
 ---
 

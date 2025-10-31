@@ -1,0 +1,24 @@
+<h2 style="margin-bottom: 1.5rem">Dresseurs</h2>
+
+<div class="grid">
+  <% trainers.forEach(trainer => { %>
+  <div class="card">
+    <h3 style="margin-bottom: 1rem"><%= trainer.name %></h3>
+    <div style="font-size: 0.875rem; color: hsl(0 0% 40%); margin-bottom: 1rem">
+      <div>Niveau <%= trainer.level %> • <%= trainer.experience %>/10 XP</div>
+      <div><%= trainer.getAlivePokemonCount() %>/<%= trainer.getPokemonCount() %> Pokémon</div>
+    </div>
+    <a href="/trainers/<%= trainer.id %>" class="btn">Voir</a>
+  </div>
+  <% }); %>
+</div>
+
+<% if (trainers.length === 0) { %>
+<div class="card">
+  <p style="color: hsl(0 0% 40%); font-size: 0.875rem">Aucun dresseur. Créez-en via l'API.</p>
+  <pre style="background: hsl(0 0% 96%); padding: 1rem; border-radius: 0.375rem; margin-top: 1rem; font-size: 0.75rem; overflow-x: auto">
+POST /api/trainers
+{ "name": "Sacha" }</pre
+  >
+</div>
+<% } %>

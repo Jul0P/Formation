@@ -1,0 +1,23 @@
+<h2 style="margin-bottom: 1.5rem">Attaques</h2>
+
+<div class="grid">
+  <% attacks.forEach(attack => { %>
+  <div class="card">
+    <h3 style="margin-bottom: 0.5rem"><%= attack.name %></h3>
+    <div style="font-size: 0.875rem; color: hsl(0 0% 40%); margin-bottom: 1rem">
+      <%= attack.damage %> dégâts • <%= attack.usageLimit %> utilisations
+    </div>
+    <a href="/attacks/<%= attack.id %>" class="btn">Voir</a>
+  </div>
+  <% }); %>
+</div>
+
+<% if (attacks.length === 0) { %>
+<div class="card">
+  <p style="color: hsl(0 0% 40%); font-size: 0.875rem">Aucune attaque. Créez-en via l'API.</p>
+  <pre style="background: hsl(0 0% 96%); padding: 1rem; border-radius: 0.375rem; margin-top: 1rem; font-size: 0.75rem; overflow-x: auto">
+POST /api/attacks
+{ "name": "Tonnerre", "damage": 50, "usageLimit": 10 }</pre
+  >
+</div>
+<% } %>

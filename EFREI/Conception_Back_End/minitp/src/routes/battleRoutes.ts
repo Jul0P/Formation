@@ -11,6 +11,7 @@ const trainerService = new TrainerService(trainerRepo);
 const battleService = new BattleService(trainerService);
 const battleController = new BattleController(battleService, trainerService);
 
+router.get('/new', battleController.showBattleForm);
 router.post('/random-challenge', battleController.randomChallenge);
 router.post('/arena1', battleController.arena1);
 router.post('/deterministic-challenge', battleController.deterministicChallenge);

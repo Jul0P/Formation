@@ -7,7 +7,12 @@ class TrainerController {
   /** GET /trainers */
   public getAll = async (req: Request, res: Response): Promise<void> => {
     const trainers = await this.trainerService.getAllTrainers();
-    res.json(trainers);
+
+    if (req.accepts('html')) {
+      res.render('trainers/index', { trainers, title: 'Liste des dresseurs' });
+    } else {
+      res.json(trainers);
+    }
   };
 
   /** GET /trainers/:id */
@@ -19,7 +24,11 @@ class TrainerController {
       return;
     }
 
-    res.json(trainer);
+    if (req.accepts('html')) {
+      res.render('trainers/show', { trainer, title: trainer.name });
+    } else {
+      res.json(trainer);
+    }
   };
 
   /** POST /trainers/:id/heal - Heals all trainer's Pokémon */

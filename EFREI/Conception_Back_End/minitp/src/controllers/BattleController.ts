@@ -6,7 +6,7 @@ class BattleController {
   constructor(private battleService: BattleService, private trainerService: TrainerService) {}
 
   /** POST /battles/random-challenge */
-  randomChallenge = async (req: Request, res: Response): Promise<void> => {
+  public randomChallenge = async (req: Request, res: Response): Promise<void> => {
     const { trainer1Id, trainer2Id } = req.body;
     const trainer1 = await this.trainerService.getTrainerById(trainer1Id);
     const trainer2 = await this.trainerService.getTrainerById(trainer2Id);
@@ -17,11 +17,16 @@ class BattleController {
     }
 
     const result = await this.battleService.randomChallenge(trainer1, trainer2);
-    res.json(result);
+
+    if (req.accepts('html')) {
+      res.render('battles/result', { result, title: 'Résultat du combat' });
+    } else {
+      res.json(result);
+    }
   };
 
   /** POST /battles/arena1 - 100 random battles */
-  arena1 = async (req: Request, res: Response): Promise<void> => {
+  public arena1 = async (req: Request, res: Response): Promise<void> => {
     const { trainer1Id, trainer2Id } = req.body;
     const trainer1 = await this.trainerService.getTrainerById(trainer1Id);
     const trainer2 = await this.trainerService.getTrainerById(trainer2Id);
@@ -32,11 +37,16 @@ class BattleController {
     }
 
     const result = await this.battleService.arena1(trainer1, trainer2);
-    res.json(result);
+
+    if (req.accepts('html')) {
+      res.render('battles/result', { result, title: 'Arène 1' });
+    } else {
+      res.json(result);
+    }
   };
 
   /** POST /battles/deterministic-challenge */
-  deterministicChallenge = async (req: Request, res: Response): Promise<void> => {
+  public deterministicChallenge = async (req: Request, res: Response): Promise<void> => {
     const { trainer1Id, trainer2Id } = req.body;
     const trainer1 = await this.trainerService.getTrainerById(trainer1Id);
     const trainer2 = await this.trainerService.getTrainerById(trainer2Id);
@@ -47,11 +57,16 @@ class BattleController {
     }
 
     const result = await this.battleService.deterministicChallenge(trainer1, trainer2);
-    res.json(result);
+
+    if (req.accepts('html')) {
+      res.render('battles/result', { result, title: 'Combat déterministe' });
+    } else {
+      res.json(result);
+    }
   };
 
   /** POST /battles/arena2 - 100 deterministic battles */
-  arena2 = async (req: Request, res: Response): Promise<void> => {
+  public arena2 = async (req: Request, res: Response): Promise<void> => {
     const { trainer1Id, trainer2Id } = req.body;
     const trainer1 = await this.trainerService.getTrainerById(trainer1Id);
     const trainer2 = await this.trainerService.getTrainerById(trainer2Id);
@@ -62,7 +77,18 @@ class BattleController {
     }
 
     const result = await this.battleService.arena2(trainer1, trainer2);
-    res.json(result);
+
+    if (req.accepts('html')) {
+      res.render('battles/result', { result, title: 'Arène 2' });
+    } else {
+      res.json(result);
+    }
+  };
+
+  /** GET /battles/new - Show battle initiation form */
+  public showBattleForm = async (req: Request, res: Response): Promise<void> => {
+    const trainers = await this.trainerService.getAllTrainers();
+    res.render('battles/form', { trainers, title: 'Lancer un combat' });
   };
 }
 

@@ -1,0 +1,43 @@
+<h2 style="margin-bottom: 1.5rem">Bienvenue</h2>
+
+<div class="grid">
+  <div class="card">
+    <h3 style="margin-bottom: 0.5rem">Dresseurs</h3>
+    <p style="color: hsl(0 0% 40%); margin-bottom: 1rem; font-size: 0.875rem">Gérez vos dresseurs de Pokémon</p>
+    <a href="/trainers" class="btn">Voir les dresseurs</a>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-bottom: 0.5rem">Pokémon</h3>
+    <p style="color: hsl(0 0% 40%); margin-bottom: 1rem; font-size: 0.875rem">Consultez tous les Pokémon</p>
+    <a href="/pokemon" class="btn">Voir les Pokémon</a>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-bottom: 0.5rem">Attaques</h3>
+    <p style="color: hsl(0 0% 40%); margin-bottom: 1rem; font-size: 0.875rem">Découvrez les attaques</p>
+    <a href="/attacks" class="btn">Voir les attaques</a>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-bottom: 0.5rem">Combats</h3>
+    <p style="color: hsl(0 0% 40%); margin-bottom: 1rem; font-size: 0.875rem">Lancez des combats</p>
+    <a href="/battles/new" class="btn">Lancer un combat</a>
+  </div>
+</div>
+
+<div class="card">
+  <h3 style="margin-bottom: 1rem">API REST</h3>
+  <div style="font-size: 0.875rem; color: hsl(0 0% 40%)">
+    <div style="margin-bottom: 0.5rem"><code>GET /api/trainers</code> - Liste des dresseurs</div>
+    <div style="margin-bottom: 0.5rem"><code>GET /api/trainers/:id</code> - Voir un dresseur</div>
+    <div style="margin-bottom: 0.5rem"><code>GET /api/pokemon</code> - Liste des Pokémon</div>
+    <div style="margin-bottom: 0.5rem"><code>GET /api/pokemon/:id</code> - Voir un Pokémon</div>
+    <div style="margin-bottom: 0.5rem"><code>GET /api/attacks</code> - Liste des attaques</div>
+    <div style="margin-bottom: 0.5rem"><code>GET /api/attacks/:id</code> - Voir une attaque</div>
+    <div style="margin-bottom: 0.5rem"><code>POST /api/battles/random-challenge</code> - Combat aléatoire</div>
+    <div style="margin-bottom: 0.5rem"><code>POST /api/battles/deterministic-challenge</code> - Combat déterministe</div>
+    <div style="margin-bottom: 0.5rem"><code>POST /api/battles/arena1</code> - Arène 1 (100 combats)</div>
+    <div><code>POST /api/battles/arena2</code> - Arène 2 (série déterministe)</div>
+  </div>
+</div>
