@@ -1,0 +1,44 @@
+<h1><%= anime.title %></h1>
+
+<table border="1">
+  <tr>
+    <th>Titre</th>
+    <td><%= anime.title %></td>
+  </tr>
+  <tr>
+    <th>Description</th>
+    <td><%= anime.description %></td>
+  </tr>
+  <tr>
+    <th>Genre</th>
+    <td><%= anime.genre %></td>
+  </tr>
+  <tr>
+    <th>Nombre d'épisodes</th>
+    <td><%= anime.episodes %></td>
+  </tr>
+  <tr>
+    <th>Statut</th>
+    <td><%= anime.status %></td>
+  </tr>
+  <tr>
+    <th>Rating</th>
+    <td><%= anime.rating || 'N/A' %></td>
+  </tr>
+  <tr>
+    <th>Année</th>
+    <td><%= anime.year || 'N/A' %></td>
+  </tr>
+  <tr>
+    <th>Créé le</th>
+    <td><%= new Date(anime.createdAt).toLocaleString('fr-FR') %></td>
+  </tr>
+  <tr>
+    <th>Mis à jour le</th>
+    <td><%= new Date(anime.updatedAt).toLocaleString('fr-FR') %></td>
+  </tr>
+</table>
+
+<p>
+  <a href="/animes">Retour à la liste</a>
+</p>

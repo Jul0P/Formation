@@ -1,0 +1,47 @@
+<h1>Liste des animes</h1>
+
+<p>
+  <a href="/animes/new">Créer un anime</a>
+</p>
+
+<% if (animes.length === 0) { %>
+<p>Aucun anime trouvé.</p>
+<% } else { %>
+<table border="1">
+  <thead>
+    <tr>
+      <th>Titre</th>
+      <th>Genre</th>
+      <th>Épisodes</th>
+      <th>Statut</th>
+      <th>Rating</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% animes.forEach(anime => { %>
+    <tr>
+      <td><%= anime.title %></td>
+      <td><%= anime.genre %></td>
+      <td><%= anime.episodes %></td>
+      <td><%= anime.status %></td>
+      <td><%= anime.rating || 'N/A' %></td>
+      <td>
+        <a href="/animes/<%= anime._id %>">Voir</a>
+      </td>
+    </tr>
+    <% }) %>
+  </tbody>
+</table>
+
+<% if (pagination) { %>
+<div>
+  <p>Page <%= pagination.page %> sur <%= pagination.pages %> (Total: <%= pagination.total %> animes)</p>
+
+  <% if (pagination.page > 1) { %>
+  <a href="/animes?page=<%= pagination.page - 1 %>&limit=<%= pagination.limit %>">Page précédente</a>
+  <% } %> <% if (pagination.page < pagination.pages) { %>
+  <a href="/animes?page=<%= pagination.page + 1 %>&limit=<%= pagination.limit %>">Page suivante</a>
+  <% } %>
+</div>
+<% } %> <% } %>

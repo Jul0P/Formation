@@ -1,0 +1,69 @@
+<h1>Recherche d'animes</h1>
+
+<form method="GET" action="/animes/search">
+  <div>
+    <label>Mot-clé (titre ou description) :</label>
+    <input type="text" name="keyword" value="<%= filters.keyword || '' %>">
+  </div>
+
+  <div>
+    <label>Genre :</label>
+    <input type="text" name="genre" value="<%= filters.genre || '' %>">
+  </div>
+
+  <div>
+    <label>Statut :</label>
+    <select name="status">
+      <option value="">Tous</option>
+      <option value="ongoing" <%= filters.status === 'ongoing' ? 'selected' : '' %>>En cours</option>
+      <option value="completed" <%= filters.status === 'completed' ? 'selected' : '' %>>Terminé</option>
+      <option value="upcoming" <%= filters.status === 'upcoming' ? 'selected' : '' %>>À venir</option>
+    </select>
+  </div>
+
+  <div>
+    <label>Rating minimum :</label>
+    <input type="number" name="minRating" min="0" max="10" step="0.1" value="<%= filters.minRating || '' %>">
+  </div>
+
+  <button type="submit">Rechercher</button>
+</form>
+
+<hr>
+
+<h2>Résultats (<%= animes.length %> anime(s) trouvé(s))</h2>
+
+<% if (animes.length === 0) { %>
+  <p>Aucun anime trouvé avec ces critères.</p>
+<% } else { %>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Titre</th>
+        <th>Genre</th>
+        <th>Épisodes</th>
+        <th>Statut</th>
+        <th>Rating</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% animes.forEach(anime => { %>
+        <tr>
+          <td><%= anime.title %></td>
+          <td><%= anime.genre %></td>
+          <td><%= anime.episodes %></td>
+          <td><%= anime.status %></td>
+          <td><%= anime.rating || 'N/A' %></td>
+          <td>
+            <a href="/animes/<%= anime._id %>">Voir</a>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+<% } %>
+
+<p>
+  <a href="/animes">Retour à la liste complète</a>
+</p>
