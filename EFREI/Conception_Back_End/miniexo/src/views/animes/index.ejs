@@ -1,47 +1,65 @@
-<h1>Liste des animes</h1>
-
-<p>
-  <a href="/animes/new">Créer un anime</a>
-</p>
+<div style="margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: center">
+  <h2 style="font-size: 1.5rem; font-weight: 600">Liste des Animes</h2>
+  <a href="/animes/new" class="btn">Créer un anime</a>
+</div>
 
 <% if (animes.length === 0) { %>
-<p>Aucun anime trouvé.</p>
+<div class="card" style="text-align: center">
+  <p style="color: hsl(0 0% 50%)">Aucun anime trouvé.</p>
+</div>
 <% } else { %>
-<table border="1">
-  <thead>
-    <tr>
-      <th>Titre</th>
-      <th>Genre</th>
-      <th>Épisodes</th>
-      <th>Statut</th>
-      <th>Rating</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% animes.forEach(anime => { %>
-    <tr>
-      <td><%= anime.title %></td>
-      <td><%= anime.genre %></td>
-      <td><%= anime.episodes %></td>
-      <td><%= anime.status %></td>
-      <td><%= anime.rating || 'N/A' %></td>
-      <td>
-        <a href="/animes/<%= anime._id %>">Voir</a>
-      </td>
-    </tr>
-    <% }) %>
-  </tbody>
-</table>
+<div class="card" style="overflow: hidden; padding: 0">
+  <table style="width: 100%; border-collapse: collapse">
+    <thead style="background: hsl(0 0% 96%)">
+      <tr>
+        <th style="padding: 0.75rem 1rem; text-align: left; font-weight: 600; font-size: 0.875rem; color: hsl(0 0% 30%)">Titre</th>
+        <th style="padding: 0.75rem 1rem; text-align: left; font-weight: 600; font-size: 0.875rem; color: hsl(0 0% 30%)">Genre</th>
+        <th style="padding: 0.75rem 1rem; text-align: left; font-weight: 600; font-size: 0.875rem; color: hsl(0 0% 30%)">Épisodes</th>
+        <th style="padding: 0.75rem 1rem; text-align: left; font-weight: 600; font-size: 0.875rem; color: hsl(0 0% 30%)">Statut</th>
+        <th style="padding: 0.75rem 1rem; text-align: left; font-weight: 600; font-size: 0.875rem; color: hsl(0 0% 30%)">Rating</th>
+        <th style="padding: 0.75rem 1rem; text-align: left; font-weight: 600; font-size: 0.875rem; color: hsl(0 0% 30%)">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% animes.forEach(anime => { %>
+      <tr style="border-top: 1px solid hsl(0 0% 90%)">
+        <td style="padding: 0.75rem 1rem; font-size: 0.875rem"><%= anime.title %></td>
+        <td style="padding: 0.75rem 1rem; font-size: 0.875rem; color: hsl(0 0% 40%)"><%= anime.genre %></td>
+        <td style="padding: 0.75rem 1rem; font-size: 0.875rem; color: hsl(0 0% 40%)"><%= anime.episodes %></td>
+        <td style="padding: 0.75rem 1rem; font-size: 0.875rem">
+          <span style="padding: 0.125rem 0.5rem; border-radius: 0.25rem; font-size: 0.75rem; background: hsl(0 0% 95%); color: hsl(0 0% 40%)">
+            <%= anime.status %>
+          </span>
+        </td>
+        <td style="padding: 0.75rem 1rem; font-size: 0.875rem; color: hsl(0 0% 40%)"><%= anime.rating || 'N/A' %></td>
+        <td style="padding: 0.75rem 1rem; font-size: 0.875rem">
+          <a href="/animes/<%= anime._id %>" style="color: hsl(0 0% 10%); text-decoration: none">Voir</a>
+        </td>
+      </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
 
 <% if (pagination) { %>
-<div>
-  <p>Page <%= pagination.page %> sur <%= pagination.pages %> (Total: <%= pagination.total %> animes)</p>
-
-  <% if (pagination.page > 1) { %>
-  <a href="/animes?page=<%= pagination.page - 1 %>&limit=<%= pagination.limit %>">Page précédente</a>
-  <% } %> <% if (pagination.page < pagination.pages) { %>
-  <a href="/animes?page=<%= pagination.page + 1 %>&limit=<%= pagination.limit %>">Page suivante</a>
-  <% } %>
+<div class="card">
+  <div style="display: flex; justify-content: space-between; align-items: center">
+    <p style="font-size: 0.875rem; color: hsl(0 0% 50%)">
+      Page <%= pagination.page %> sur <%= pagination.pages %> (Total: <%= pagination.total %> animes)
+    </p>
+    <div style="display: flex; gap: 0.5rem">
+      <% if (pagination.page > 1) { %>
+      <a
+        href="/animes?page=<%= pagination.page - 1 %>&limit=<%= pagination.limit %>"
+        class="btn"
+        style="background: white; color: hsl(0 0% 10%); border: 1px solid hsl(0 0% 90%)"
+      >
+        Précédent
+      </a>
+      <% } %> <% if (pagination.page < pagination.pages) { %>
+      <a href="/animes?page=<%= pagination.page + 1 %>&limit=<%= pagination.limit %>" class="btn"> Suivant </a>
+      <% } %>
+    </div>
+  </div>
 </div>
 <% } %> <% } %>

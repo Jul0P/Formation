@@ -1,69 +1,89 @@
-<h1>Recherche d'animes</h1>
+<h2 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 1.5rem">Recherche d'Animes</h2>
 
-<form method="GET" action="/animes/search">
-  <div>
-    <label>Mot-clé (titre ou description) :</label>
-    <input type="text" name="keyword" value="<%= filters.keyword || '' %>">
-  </div>
+<div class="card">
+    <form method="GET" action="/animes/search">
+      <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-bottom: 1rem">
+        <div>
+          <label style="display: block; font-weight: 600; font-size: 0.875rem; margin-bottom: 0.25rem; color: hsl(0 0% 30%)">
+            Mot-clé (titre ou description)
+          </label>
+          <input type="text" name="keyword" value="<%= filters.keyword || '' %>" style="width: 100%; padding: 0.5rem; border: 1px solid hsl(0 0% 90%); border-radius: 0.375rem; font-size: 0.875rem">
+        </div>
 
-  <div>
-    <label>Genre :</label>
-    <input type="text" name="genre" value="<%= filters.genre || '' %>">
-  </div>
+        <div>
+          <label style="display: block; font-weight: 600; font-size: 0.875rem; margin-bottom: 0.25rem; color: hsl(0 0% 30%)">
+            Genre
+          </label>
+          <input type="text" name="genre" value="<%= filters.genre || '' %>" style="width: 100%; padding: 0.5rem; border: 1px solid hsl(0 0% 90%); border-radius: 0.375rem; font-size: 0.875rem">
+        </div>
 
-  <div>
-    <label>Statut :</label>
-    <select name="status">
-      <option value="">Tous</option>
-      <option value="ongoing" <%= filters.status === 'ongoing' ? 'selected' : '' %>>En cours</option>
-      <option value="completed" <%= filters.status === 'completed' ? 'selected' : '' %>>Terminé</option>
-      <option value="upcoming" <%= filters.status === 'upcoming' ? 'selected' : '' %>>À venir</option>
-    </select>
-  </div>
+        <div>
+          <label style="display: block; font-weight: 600; font-size: 0.875rem; margin-bottom: 0.25rem; color: hsl(0 0% 30%)">
+            Statut
+          </label>
+          <select name="status" style="width: 100%; padding: 0.5rem; border: 1px solid hsl(0 0% 90%); border-radius: 0.375rem; font-size: 0.875rem">
+            <option value="">Tous</option>
+            <option value="ongoing" <%= filters.status === 'ongoing' ? 'selected' : '' %>>En cours</option>
+            <option value="completed" <%= filters.status === 'completed' ? 'selected' : '' %>>Terminé</option>
+            <option value="upcoming" <%= filters.status === 'upcoming' ? 'selected' : '' %>>À venir</option>
+          </select>
+        </div>
 
-  <div>
-    <label>Rating minimum :</label>
-    <input type="number" name="minRating" min="0" max="10" step="0.1" value="<%= filters.minRating || '' %>">
-  </div>
+        <div>
+          <label style="display: block; font-weight: 600; font-size: 0.875rem; margin-bottom: 0.25rem; color: hsl(0 0% 30%)">
+            Rating minimum
+          </label>
+          <input type="number" name="minRating" min="0" max="10" step="0.1" value="<%= filters.minRating || '' %>" style="width: 100%; padding: 0.5rem; border: 1px solid hsl(0 0% 90%); border-radius: 0.375rem; font-size: 0.875rem">
+        </div>
+      </div>
 
-  <button type="submit">Rechercher</button>
-</form>
+      <button type="submit" class="btn">Rechercher</button>
+    </form>
+</div>
 
-<hr>
-
-<h2>Résultats (<%= animes.length %> anime(s) trouvé(s))</h2>
+<div style="margin-bottom: 1rem">
+  <h3 style="font-weight: 600">Résultats (<%= animes.length %> anime(s) trouvé(s))</h3>
+</div>
 
 <% if (animes.length === 0) { %>
-  <p>Aucun anime trouvé avec ces critères.</p>
+<div class="card" style="text-align: center">
+  <p style="color: hsl(0 0% 50%)">Aucun anime trouvé avec ces critères.</p>
+</div>
 <% } else { %>
-  <table border="1">
-    <thead>
+<div class="card" style="overflow: hidden; padding: 0">
+  <table style="width: 100%; border-collapse: collapse">
+    <thead style="background: hsl(0 0% 96%)">
       <tr>
-        <th>Titre</th>
-        <th>Genre</th>
-        <th>Épisodes</th>
-        <th>Statut</th>
-        <th>Rating</th>
-        <th>Actions</th>
+        <th style="padding: 0.75rem 1rem; text-align: left; font-weight: 600; font-size: 0.875rem; color: hsl(0 0% 30%)">Titre</th>
+        <th style="padding: 0.75rem 1rem; text-align: left; font-weight: 600; font-size: 0.875rem; color: hsl(0 0% 30%)">Genre</th>
+        <th style="padding: 0.75rem 1rem; text-align: left; font-weight: 600; font-size: 0.875rem; color: hsl(0 0% 30%)">Épisodes</th>
+        <th style="padding: 0.75rem 1rem; text-align: left; font-weight: 600; font-size: 0.875rem; color: hsl(0 0% 30%)">Statut</th>
+        <th style="padding: 0.75rem 1rem; text-align: left; font-weight: 600; font-size: 0.875rem; color: hsl(0 0% 30%)">Rating</th>
+        <th style="padding: 0.75rem 1rem; text-align: left; font-weight: 600; font-size: 0.875rem; color: hsl(0 0% 30%)">Actions</th>
       </tr>
     </thead>
     <tbody>
       <% animes.forEach(anime => { %>
-        <tr>
-          <td><%= anime.title %></td>
-          <td><%= anime.genre %></td>
-          <td><%= anime.episodes %></td>
-          <td><%= anime.status %></td>
-          <td><%= anime.rating || 'N/A' %></td>
-          <td>
-            <a href="/animes/<%= anime._id %>">Voir</a>
-          </td>
-        </tr>
+      <tr style="border-top: 1px solid hsl(0 0% 90%)">
+        <td style="padding: 0.75rem 1rem; font-size: 0.875rem"><%= anime.title %></td>
+        <td style="padding: 0.75rem 1rem; font-size: 0.875rem; color: hsl(0 0% 40%)"><%= anime.genre %></td>
+        <td style="padding: 0.75rem 1rem; font-size: 0.875rem; color: hsl(0 0% 40%)"><%= anime.episodes %></td>
+        <td style="padding: 0.75rem 1rem; font-size: 0.875rem">
+          <span style="padding: 0.125rem 0.5rem; border-radius: 0.25rem; font-size: 0.75rem; background: hsl(0 0% 95%); color: hsl(0 0% 40%)">
+            <%= anime.status %>
+          </span>
+        </td>
+        <td style="padding: 0.75rem 1rem; font-size: 0.875rem; color: hsl(0 0% 40%)"><%= anime.rating || 'N/A' %></td>
+        <td style="padding: 0.75rem 1rem; font-size: 0.875rem">
+          <a href="/animes/<%= anime._id %>" style="color: hsl(0 0% 10%); text-decoration: none">Voir</a>
+        </td>
+      </tr>
       <% }) %>
     </tbody>
   </table>
+</div>
 <% } %>
 
-<p>
-  <a href="/animes">Retour à la liste complète</a>
-</p>
+<div class="card">
+  <a href="/animes" style="color: hsl(0 0% 40%); text-decoration: none; font-size: 0.875rem">← Retour à la liste</a>
+</div>

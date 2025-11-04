@@ -1,3 +1,33 @@
-<h1>Bienvenue sur l'API Anime</h1>
+<h2 style="margin-bottom: 1.5rem">Bienvenue</h2>
 
-<h2>Ici c'est le body</h2>
+<div class="grid">
+  <div class="card">
+    <h3 style="margin-bottom: 0.5rem">Animes</h3>
+    <p style="color: hsl(0 0% 40%); margin-bottom: 1rem; font-size: 0.875rem">Parcourir tous les animes</p>
+    <a href="/animes" class="btn">Voir les animes</a>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-bottom: 0.5rem">Créer</h3>
+    <p style="color: hsl(0 0% 40%); margin-bottom: 1rem; font-size: 0.875rem">Ajouter un nouvel anime</p>
+    <a href="/animes/new" class="btn">Créer un anime</a>
+  </div>
+
+  <div class="card">
+    <h3 style="margin-bottom: 0.5rem">Rechercher</h3>
+    <p style="color: hsl(0 0% 40%); margin-bottom: 1rem; font-size: 0.875rem">Filtrer par critères</p>
+    <a href="/animes/search" class="btn">Rechercher</a>
+  </div>
+</div>
+
+<div class="card">
+  <h3 style="margin-bottom: 1rem">API REST</h3>
+  <div style="font-size: 0.875rem; color: hsl(0 0% 40%)">
+    <div style="margin-bottom: 0.5rem"><code>GET /api/animes</code> - Liste des animes</div>
+    <div style="margin-bottom: 0.5rem"><code>GET /api/animes/:id</code> - Détails d'un anime</div>
+    <div style="margin-bottom: 0.5rem"><code>POST /api/animes</code> - Créer un anime</div>
+    <div style="margin-bottom: 0.5rem"><code>PUT /api/animes/:id</code> - Modifier un anime</div>
+    <div style="margin-bottom: 0.5rem"><code>DELETE /api/animes/:id</code> - Supprimer un anime</div>
+    <div><code>GET /api/animes/search</code> - Recherche avancée</div>
+  </div>
+</div>

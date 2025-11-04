@@ -1,44 +1,48 @@
-<h1><%= anime.title %></h1>
+<div style="margin-bottom: 1rem">
+  <a href="/animes" style="color: hsl(0 0% 40%); text-decoration: none; font-size: 0.875rem">← Retour</a>
+</div>
 
-<table border="1">
-  <tr>
-    <th>Titre</th>
-    <td><%= anime.title %></td>
-  </tr>
-  <tr>
-    <th>Description</th>
-    <td><%= anime.description %></td>
-  </tr>
-  <tr>
-    <th>Genre</th>
-    <td><%= anime.genre %></td>
-  </tr>
-  <tr>
-    <th>Nombre d'épisodes</th>
-    <td><%= anime.episodes %></td>
-  </tr>
-  <tr>
-    <th>Statut</th>
-    <td><%= anime.status %></td>
-  </tr>
-  <tr>
-    <th>Rating</th>
-    <td><%= anime.rating || 'N/A' %></td>
-  </tr>
-  <tr>
-    <th>Année</th>
-    <td><%= anime.year || 'N/A' %></td>
-  </tr>
-  <tr>
-    <th>Créé le</th>
-    <td><%= new Date(anime.createdAt).toLocaleString('fr-FR') %></td>
-  </tr>
-  <tr>
-    <th>Mis à jour le</th>
-    <td><%= new Date(anime.updatedAt).toLocaleString('fr-FR') %></td>
-  </tr>
-</table>
+<div class="card">
+  <h2 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 1.5rem"><%= anime.title %></h2>
 
-<p>
-  <a href="/animes">Retour à la liste</a>
-</p>
+  <div style="display: grid; gap: 1.5rem">
+    <div>
+      <div style="font-weight: 600; font-size: 0.875rem; color: hsl(0 0% 30%); margin-bottom: 0.25rem">Description</div>
+      <div style="color: hsl(0 0% 40%); font-size: 0.875rem"><%= anime.description %></div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem">
+      <div>
+        <div style="font-weight: 600; font-size: 0.875rem; color: hsl(0 0% 30%); margin-bottom: 0.25rem">Genre</div>
+        <div style="color: hsl(0 0% 40%); font-size: 0.875rem"><%= anime.genre %></div>
+      </div>
+
+      <div>
+        <div style="font-weight: 600; font-size: 0.875rem; color: hsl(0 0% 30%); margin-bottom: 0.25rem">Épisodes</div>
+        <div style="color: hsl(0 0% 40%); font-size: 0.875rem"><%= anime.episodes %></div>
+      </div>
+
+      <div>
+        <div style="font-weight: 600; font-size: 0.875rem; color: hsl(0 0% 30%); margin-bottom: 0.25rem">Statut</div>
+        <div style="font-size: 0.875rem">
+          <span style="padding: 0.25rem 0.5rem; border-radius: 0.25rem; background: hsl(0 0% 95%); color: hsl(0 0% 40%)"> <%= anime.status %> </span>
+        </div>
+      </div>
+
+      <div>
+        <div style="font-weight: 600; font-size: 0.875rem; color: hsl(0 0% 30%); margin-bottom: 0.25rem">Rating</div>
+        <div style="color: hsl(0 0% 40%); font-size: 0.875rem"><%= anime.rating || 'N/A' %> / 10</div>
+      </div>
+
+      <div>
+        <div style="font-weight: 600; font-size: 0.875rem; color: hsl(0 0% 30%); margin-bottom: 0.25rem">Année</div>
+        <div style="color: hsl(0 0% 40%); font-size: 0.875rem"><%= anime.year || 'N/A' %></div>
+      </div>
+    </div>
+
+    <div style="border-top: 1px solid hsl(0 0% 90%); padding-top: 1rem; font-size: 0.75rem; color: hsl(0 0% 50%)">
+      <div>Créé le <%= new Date(anime.createdAt).toLocaleString('fr-FR') %></div>
+      <div>Mis à jour le <%= new Date(anime.updatedAt).toLocaleString('fr-FR') %></div>
+    </div>
+  </div>
+</div>

@@ -1,48 +1,105 @@
-<h1>Créer un anime</h1>
+<div style="margin-bottom: 1rem">
+  <a href="/animes" style="color: hsl(0 0% 40%); text-decoration: none; font-size: 0.875rem">← Retour</a>
+</div>
 
-<form method="POST" action="/animes">
-  <div>
-    <label>Titre</label>
-    <input type="text" name="title" required />
-  </div>
+<div class="card">
+  <h2 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 1.5rem">Créer un Anime</h2>
 
-  <div>
-    <label>Description</label>
-    <textarea name="description" rows="4" required></textarea>
-  </div>
+  <form method="POST" action="/animes">
+    <div style="margin-bottom: 1rem">
+      <label style="display: block; font-weight: 600; font-size: 0.875rem; margin-bottom: 0.25rem; color: hsl(0 0% 30%)">
+        Titre <span style="color: hsl(0 100% 50%)">*</span>
+      </label>
+      <input
+        type="text"
+        name="title"
+        required
+        style="width: 100%; padding: 0.5rem; border: 1px solid hsl(0 0% 90%); border-radius: 0.375rem; font-size: 0.875rem"
+      />
+    </div>
 
-  <div>
-    <label>Genre</label>
-    <input type="text" name="genre" required placeholder="Action, Romance, Shonen..." />
-  </div>
+    <div style="margin-bottom: 1rem">
+      <label style="display: block; font-weight: 600; font-size: 0.875rem; margin-bottom: 0.25rem; color: hsl(0 0% 30%)">
+        Description <span style="color: hsl(0 100% 50%)">*</span>
+      </label>
+      <textarea
+        name="description"
+        rows="4"
+        required
+        style="width: 100%; padding: 0.5rem; border: 1px solid hsl(0 0% 90%); border-radius: 0.375rem; font-size: 0.875rem; font-family: inherit"
+      ></textarea>
+    </div>
 
-  <div>
-    <label>Nombre d'épisodes</label>
-    <input type="number" name="episodes" min="1" required />
-  </div>
+    <div style="margin-bottom: 1rem">
+      <label style="display: block; font-weight: 600; font-size: 0.875rem; margin-bottom: 0.25rem; color: hsl(0 0% 30%)">
+        Genre <span style="color: hsl(0 100% 50%)">*</span>
+      </label>
+      <input
+        type="text"
+        name="genre"
+        required
+        placeholder="Action, Romance, Shonen..."
+        style="width: 100%; padding: 0.5rem; border: 1px solid hsl(0 0% 90%); border-radius: 0.375rem; font-size: 0.875rem"
+      />
+    </div>
 
-  <div>
-    <label>Statut</label>
-    <select name="status" required>
-      <option value="">Sélectionner...</option>
-      <option value="ongoing">En cours</option>
-      <option value="completed">Terminé</option>
-      <option value="upcoming">À venir</option>
-    </select>
-  </div>
+    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-bottom: 1rem">
+      <div>
+        <label style="display: block; font-weight: 600; font-size: 0.875rem; margin-bottom: 0.25rem; color: hsl(0 0% 30%)">
+          Épisodes <span style="color: hsl(0 100% 50%)">*</span>
+        </label>
+        <input
+          type="number"
+          name="episodes"
+          min="1"
+          required
+          style="width: 100%; padding: 0.5rem; border: 1px solid hsl(0 0% 90%); border-radius: 0.375rem; font-size: 0.875rem"
+        />
+      </div>
 
-  <div>
-    <label>Rating (0-10)</label>
-    <input type="number" name="rating" min="0" max="10" step="0.1" />
-  </div>
+      <div>
+        <label style="display: block; font-weight: 600; font-size: 0.875rem; margin-bottom: 0.25rem; color: hsl(0 0% 30%)">
+          Statut <span style="color: hsl(0 100% 50%)">*</span>
+        </label>
+        <select
+          name="status"
+          required
+          style="width: 100%; padding: 0.5rem; border: 1px solid hsl(0 0% 90%); border-radius: 0.375rem; font-size: 0.875rem"
+        >
+          <option value="">Sélectionner...</option>
+          <option value="ongoing">En cours</option>
+          <option value="completed">Terminé</option>
+          <option value="upcoming">À venir</option>
+        </select>
+      </div>
+    </div>
 
-  <div>
-    <label>Année</label>
-    <input type="number" name="year" />
-  </div>
+    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-bottom: 1.5rem">
+      <div>
+        <label style="display: block; font-weight: 600; font-size: 0.875rem; margin-bottom: 0.25rem; color: hsl(0 0% 30%)"> Rating (0-10) </label>
+        <input
+          type="number"
+          name="rating"
+          min="0"
+          max="10"
+          step="0.1"
+          style="width: 100%; padding: 0.5rem; border: 1px solid hsl(0 0% 90%); border-radius: 0.375rem; font-size: 0.875rem"
+        />
+      </div>
 
-  <div>
-    <button type="submit">Créer l'anime</button>
-    <a href="/animes">Annuler</a>
-  </div>
-</form>
+      <div>
+        <label style="display: block; font-weight: 600; font-size: 0.875rem; margin-bottom: 0.25rem; color: hsl(0 0% 30%)"> Année </label>
+        <input
+          type="number"
+          name="year"
+          style="width: 100%; padding: 0.5rem; border: 1px solid hsl(0 0% 90%); border-radius: 0.375rem; font-size: 0.875rem"
+        />
+      </div>
+    </div>
+
+    <div style="display: flex; gap: 0.5rem">
+      <button type="submit" class="btn">Créer l'anime</button>
+      <a href="/animes" class="btn" style="background: white; color: hsl(0 0% 40%); border: 1px solid hsl(0 0% 90%)">Annuler</a>
+    </div>
+  </form>
+</div>

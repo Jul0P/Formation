@@ -13,7 +13,7 @@ import trainerRoutes from './routes/trainerRoutes';
 dotenv.config();
 
 const app = express();
-const PORT = 3000;
+const { PORT } = process.env;
 const __dirname = import.meta.dirname;
 
 app.set('view engine', 'ejs');
