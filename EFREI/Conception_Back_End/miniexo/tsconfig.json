@@ -16,7 +16,8 @@
       "@/services/*": ["services/*"],
       "@/types/*": ["types/*"],
       "@/config/*": ["config/*"],
-      "@/routes/*": ["routes/*"]
+      "@/routes/*": ["routes/*"],
+      "@/middlewares/*": ["middlewares/*"]
     }
   },
   "include": ["src/**/*"],

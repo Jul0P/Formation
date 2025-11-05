@@ -1,5 +1,6 @@
 import AnimeService from '@/services/AnimeService';
 import { Request, Response } from 'express';
+import { validationResult } from 'express-validator';
 
 class AnimeController {
   constructor(private animeService: AnimeService) {}
@@ -7,6 +8,12 @@ class AnimeController {
   /** POST /animes */
   public create = async (req: Request, res: Response): Promise<void> => {
     try {
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        res.status(400).json({ errors: errors.array() });
+        return;
+      }
+
       const anime = await this.animeService.create(req.body);
 
       if (req.accepts('html')) {
@@ -22,6 +29,12 @@ class AnimeController {
   /** GET /animes/:id */
   public getById = async (req: Request, res: Response): Promise<void> => {
     try {
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        res.status(400).json({ errors: errors.array() });
+        return;
+      }
+
       const anime = await this.animeService.findById(req.params.id);
 
       if (!anime) {
@@ -42,6 +55,12 @@ class AnimeController {
   /** GET /animes */
   public list = async (req: Request, res: Response): Promise<void> => {
     try {
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        res.status(400).json({ errors: errors.array() });
+        return;
+      }
+
       const page = parseInt(req.query.page as string) || 1;
       const limit = parseInt(req.query.limit as string) || 10;
 
@@ -83,6 +102,12 @@ class AnimeController {
   /** GET /animes/search */
   public search = async (req: Request, res: Response): Promise<void> => {
     try {
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        res.status(400).json({ errors: errors.array() });
+        return;
+      }
+
       const { keyword, genre, status, minRating } = req.query;
 
       const animes = await this.animeService.search(
