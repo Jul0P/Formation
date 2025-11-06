@@ -1,12 +1,19 @@
 import BattleService from '@/services/BattleService';
 import TrainerService from '@/services/TrainerService';
 import { Request, Response } from 'express';
+import { validationResult } from 'express-validator';
 
 class BattleController {
   constructor(private battleService: BattleService, private trainerService: TrainerService) {}
 
   /** POST /battles/random-challenge */
   public randomChallenge = async (req: Request, res: Response): Promise<void> => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      res.status(400).json({ errors: errors.array() });
+      return;
+    }
+
     const { trainer1Id, trainer2Id } = req.body;
     const trainer1 = await this.trainerService.getTrainerById(trainer1Id);
     const trainer2 = await this.trainerService.getTrainerById(trainer2Id);
@@ -27,6 +34,12 @@ class BattleController {
 
   /** POST /battles/arena1 - 100 random battles */
   public arena1 = async (req: Request, res: Response): Promise<void> => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      res.status(400).json({ errors: errors.array() });
+      return;
+    }
+
     const { trainer1Id, trainer2Id } = req.body;
     const trainer1 = await this.trainerService.getTrainerById(trainer1Id);
     const trainer2 = await this.trainerService.getTrainerById(trainer2Id);
@@ -47,6 +60,12 @@ class BattleController {
 
   /** POST /battles/deterministic-challenge */
   public deterministicChallenge = async (req: Request, res: Response): Promise<void> => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      res.status(400).json({ errors: errors.array() });
+      return;
+    }
+
     const { trainer1Id, trainer2Id } = req.body;
     const trainer1 = await this.trainerService.getTrainerById(trainer1Id);
     const trainer2 = await this.trainerService.getTrainerById(trainer2Id);
@@ -67,6 +86,12 @@ class BattleController {
 
   /** POST /battles/arena2 - 100 deterministic battles */
   public arena2 = async (req: Request, res: Response): Promise<void> => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      res.status(400).json({ errors: errors.array() });
+      return;
+    }
+
     const { trainer1Id, trainer2Id } = req.body;
     const trainer1 = await this.trainerService.getTrainerById(trainer1Id);
     const trainer2 = await this.trainerService.getTrainerById(trainer2Id);

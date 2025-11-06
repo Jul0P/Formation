@@ -1,4 +1,5 @@
 import BattleController from '@/controllers/BattleController';
+import { battleValidation } from '@/middlewares/validators';
 import TrainerRepository from '@/repositories/TrainerRepository';
 import BattleService from '@/services/BattleService';
 import TrainerService from '@/services/TrainerService';
@@ -12,9 +13,9 @@ const battleService = new BattleService(trainerService);
 const battleController = new BattleController(battleService, trainerService);
 
 router.get('/new', battleController.showBattleForm);
-router.post('/random-challenge', battleController.randomChallenge);
-router.post('/arena1', battleController.arena1);
-router.post('/deterministic-challenge', battleController.deterministicChallenge);
-router.post('/arena2', battleController.arena2);
+router.post('/random-challenge', battleValidation, battleController.randomChallenge);
+router.post('/arena1', battleValidation, battleController.arena1);
+router.post('/deterministic-challenge', battleValidation, battleController.deterministicChallenge);
+router.post('/arena2', battleValidation, battleController.arena2);
 
 export default router;

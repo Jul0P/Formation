@@ -1,5 +1,6 @@
 import AttackService from '@/services/AttackService';
 import { Request, Response } from 'express';
+import { validationResult } from 'express-validator';
 
 class AttackController {
   constructor(private attackService: AttackService) {}
@@ -17,6 +18,12 @@ class AttackController {
 
   /** GET /attacks/:id */
   public getById = async (req: Request, res: Response): Promise<void> => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      res.status(400).json({ errors: errors.array() });
+      return;
+    }
+
     const attack = await this.attackService.getAttackById(parseInt(req.params.id));
 
     if (!attack) {
@@ -33,6 +40,12 @@ class AttackController {
 
   /** POST /attacks */
   public create = async (req: Request, res: Response): Promise<void> => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      res.status(400).json({ errors: errors.array() });
+      return;
+    }
+
     const { name, damage, usageLimit } = req.body;
     const attack = await this.attackService.createAttack(name, damage, usageLimit);
     res.status(201).json(attack);
@@ -40,6 +53,12 @@ class AttackController {
 
   /** DELETE /attacks/:id */
   public delete = async (req: Request, res: Response): Promise<void> => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      res.status(400).json({ errors: errors.array() });
+      return;
+    }
+
     await this.attackService.deleteAttack(parseInt(req.params.id));
     res.status(204).send();
   };
