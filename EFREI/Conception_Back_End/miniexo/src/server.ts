@@ -2,8 +2,10 @@ import dotenv from 'dotenv';
 import express from 'express';
 import expressEjsLayouts from 'express-ejs-layouts';
 import path from 'path';
+import swaggerUi from 'swagger-ui-express';
 
 import database from './config/database.js';
+import { swaggerSpec } from './config/swagger.js';
 import animeRoutes from './routes/animeRoutes.js';
 
 dotenv.config();
@@ -19,6 +21,8 @@ app.set('layout', 'layout');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.get('/', (req, res) => {
   res.render('index', { title: 'Accueil - API Anime' });
@@ -36,6 +40,7 @@ async function startServer() {
 ╔════════════════════════════════════════╗
 ║      🚀  Serveur Anime lancé           ║
 ║      📡  http://localhost:${PORT}         ║
+║   📚  Docs: http://localhost:${PORT}/docs ║
 ╚════════════════════════════════════════╝
       `);
     });

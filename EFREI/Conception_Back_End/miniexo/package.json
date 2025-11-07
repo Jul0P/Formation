@@ -15,13 +15,17 @@
     "express": "^5.1.0",
     "express-ejs-layouts": "^2.5.1",
     "express-validator": "^7.3.0",
-    "mongoose": "^8.0.0"
+    "mongoose": "^8.0.0",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1"
   },
   "devDependencies": {
     "@types/ejs": "^3.1.5",
     "@types/express": "^5.0.5",
     "@types/express-ejs-layouts": "^2.5.4",
     "@types/node": "^24.9.2",
+    "@types/swagger-jsdoc": "^6.0.4",
+    "@types/swagger-ui-express": "^4.1.6",
     "nodemon": "^3.1.10",
     "ts-node": "^10.9.2",
     "tsx": "^4.20.6",
