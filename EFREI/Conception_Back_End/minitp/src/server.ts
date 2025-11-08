@@ -2,9 +2,11 @@ import dotenv from 'dotenv';
 import express from 'express';
 import expressEjsLayouts from 'express-ejs-layouts';
 import path from 'path';
+import swaggerUi from 'swagger-ui-express';
 import logger from './middlewares/loggerMiddleware';
 
 import database from './config/database';
+import { swaggerSpec } from './config/swagger';
 import attackRoutes from './routes/attackRoutes';
 import battleRoutes from './routes/battleRoutes';
 import pokemonRoutes from './routes/pokemonRoutes';
@@ -24,6 +26,8 @@ app.set('layout', 'layout');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(logger);
+
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.get('/', (req, res) => {
   res.render('index', { title: 'Accueil' });
@@ -50,6 +54,7 @@ async function startServer() {
 ║      📡  http://localhost:${PORT}         ║
 ║      🎮  Interface Web disponible      ║
 ║      📊  API REST disponible           ║
+║  📚  Docs: http://localhost:${PORT}/docs  ║
 ╚════════════════════════════════════════╝
       `);
     });
