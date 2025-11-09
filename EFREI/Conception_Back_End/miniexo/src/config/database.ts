@@ -33,4 +33,4 @@ class Database {
   }
 }
 
-export default Database.getInstance();
+export default Database;
