@@ -20,22 +20,22 @@ class AnimeService {
     const query: any = {};
 
     // Recherche par mot-clé sur title et description (insensible à la casse)
-    if (keyword) {
+    if (keyword && keyword.trim() !== '') {
       query.$or = [{ title: { $regex: keyword, $options: 'i' } }, { description: { $regex: keyword, $options: 'i' } }];
     }
 
     // Filtre par genre
-    if (genre) {
+    if (genre && genre.trim() !== '') {
       query.genre = { $regex: genre, $options: 'i' };
     }
 
-    // Filtre par status
-    if (status) {
+    // Filtre par status (ignore les valeurs vides ou "Tous")
+    if (status && status.trim() !== '' && status !== 'Tous') {
       query.status = status;
     }
 
     // Filtre par rating minimum
-    if (minRating !== undefined) {
+    if (minRating !== undefined && !isNaN(minRating)) {
       query.rating = { $gte: minRating }; // $gte : greater than or equal
     }
 

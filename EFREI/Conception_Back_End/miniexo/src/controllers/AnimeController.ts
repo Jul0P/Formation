@@ -110,12 +110,13 @@ class AnimeController {
 
       const { keyword, genre, status, minRating } = req.query;
 
-      const animes = await this.animeService.search(
-        keyword as string,
-        genre as string,
-        status as string,
-        minRating ? parseFloat(minRating as string) : undefined,
-      );
+      // Nettoyer les valeurs vides et "Tous"
+      const cleanStatus = status && status !== '' && status !== 'Tous' ? (status as string) : undefined;
+      const cleanKeyword = keyword && keyword !== '' ? (keyword as string) : undefined;
+      const cleanGenre = genre && genre !== '' ? (genre as string) : undefined;
+      const cleanMinRating = minRating ? parseFloat(minRating as string) : undefined;
+
+      const animes = await this.animeService.search(cleanKeyword, cleanGenre, cleanStatus, cleanMinRating);
 
       if (req.accepts('html')) {
         res.render('animes/search', {

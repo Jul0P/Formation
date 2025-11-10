@@ -36,7 +36,16 @@ export const animeValidation = [
 export const searchValidation = [
   query('keyword').optional().isString().withMessage('Le mot-clé doit être une chaîne'),
   query('genre').optional().isString().withMessage('Le genre doit être une chaîne'),
-  query('status').optional().isIn(['ongoing', 'completed', 'upcoming']).withMessage('Le statut doit être: ongoing, completed ou upcoming'),
+  query('status')
+    .optional()
+    .custom((value) => {
+      // Accepte vide, undefined, ou les valeurs valides
+      if (!value || value === '' || value === 'Tous') {
+        return true;
+      }
+      return ['ongoing', 'completed', 'upcoming'].includes(value);
+    })
+    .withMessage('Le statut doit être: ongoing, completed, upcoming ou vide'),
   query('minRating').optional().isFloat({ min: 0, max: 10 }).withMessage('La note minimale doit être entre 0 et 10'),
 ];
 
