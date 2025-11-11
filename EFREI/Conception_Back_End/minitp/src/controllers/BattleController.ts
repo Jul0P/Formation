@@ -4,7 +4,13 @@ import { Request, Response } from 'express';
 import { validationResult } from 'express-validator';
 
 class BattleController {
-  constructor(private battleService: BattleService, private trainerService: TrainerService) {}
+  private battleService: BattleService;
+  private trainerService: TrainerService;
+
+  constructor(battleService: BattleService, trainerService: TrainerService) {
+    this.battleService = battleService;
+    this.trainerService = trainerService;
+  }
 
   /** POST /battles/random-challenge */
   public randomChallenge = async (req: Request, res: Response): Promise<void> => {

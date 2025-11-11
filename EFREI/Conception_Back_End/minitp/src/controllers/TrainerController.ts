@@ -3,7 +3,11 @@ import { Request, Response } from 'express';
 import { validationResult } from 'express-validator';
 
 class TrainerController {
-  constructor(private trainerService: TrainerService) {}
+  private trainerService: TrainerService;
+
+  constructor(trainerService: TrainerService) {
+    this.trainerService = trainerService;
+  }
 
   /** GET /trainers */
   public getAll = async (req: Request, res: Response): Promise<void> => {

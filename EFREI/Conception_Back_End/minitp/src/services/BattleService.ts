@@ -4,7 +4,11 @@ import { BattleResult } from '@/types/index';
 import TrainerService from './TrainerService';
 
 class BattleService {
-  constructor(private trainerService: TrainerService) {}
+  private trainerService: TrainerService;
+
+  constructor(trainerService: TrainerService) {
+    this.trainerService = trainerService;
+  }
 
   /** Heal both trainers, select random Pokemon, battle - winner gains 1 XP */
   public async randomChallenge(trainer1: Trainer, trainer2: Trainer): Promise<BattleResult> {

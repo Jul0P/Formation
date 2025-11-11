@@ -3,7 +3,13 @@ import AttackRepository from '@/repositories/AttackRepository';
 import PokemonRepository from '@/repositories/PokemonRepository';
 
 class PokemonService {
-  constructor(private pokemonRepository: PokemonRepository, private attackRepository: AttackRepository) {}
+  private pokemonRepository: PokemonRepository;
+  private attackRepository: AttackRepository;
+
+  constructor(pokemonRepository: PokemonRepository, attackRepository: AttackRepository) {
+    this.pokemonRepository = pokemonRepository;
+    this.attackRepository = attackRepository;
+  }
 
   public async getPokemonById(id: number): Promise<Pokemon | null> {
     return this.pokemonRepository.findById(id);

@@ -1,69 +1,96 @@
 import dotenv from 'dotenv';
-import express from 'express';
+import express, { Application, Request, Response } from 'express';
 import expressEjsLayouts from 'express-ejs-layouts';
 import path from 'path';
 import swaggerUi from 'swagger-ui-express';
 import logger from './middlewares/loggerMiddleware';
 
-import database from './config/database';
+import Database from './config/database';
 import { swaggerSpec } from './config/swagger';
-import attackRoutes from './routes/attackRoutes';
-import battleRoutes from './routes/battleRoutes';
-import pokemonRoutes from './routes/pokemonRoutes';
-import trainerRoutes from './routes/trainerRoutes';
+import AttackRoutes from './routes/attackRoutes';
+import BattleRoutes from './routes/battleRoutes';
+import PokemonRoutes from './routes/pokemonRoutes';
+import TrainerRoutes from './routes/trainerRoutes';
 
 dotenv.config();
 
-const app = express();
-const { PORT } = process.env;
-const __dirname = import.meta.dirname;
+class Server {
+  private app: Application;
+  private port: number;
+  private database: Database;
 
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
-app.use(expressEjsLayouts);
-app.set('layout', 'layout');
+  constructor() {
+    this.app = express();
+    this.port = parseInt(process.env.PORT!);
+    this.database = Database.getInstance();
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(logger);
+    this.initializeViewEngine();
+    this.initializeMiddlewares();
+    this.initializeRoutes();
+  }
 
-app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+  private initializeViewEngine(): void {
+    const __dirname = import.meta.dirname;
+    this.app.set('view engine', 'ejs');
+    this.app.set('views', path.join(__dirname, 'views'));
+    this.app.use(expressEjsLayouts);
+    this.app.set('layout', 'layout');
+  }
 
-app.get('/', (req, res) => {
-  res.render('index', { title: 'Accueil' });
-});
+  private initializeMiddlewares(): void {
+    this.app.use(express.json());
+    this.app.use(express.urlencoded({ extended: true }));
+    this.app.use(logger);
+  }
 
-app.use('/trainers', trainerRoutes);
-app.use('/pokemon', pokemonRoutes);
-app.use('/attacks', attackRoutes);
-app.use('/battles', battleRoutes);
+  private initializeRoutes(): void {
+    this.app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-app.use('/api/trainers', trainerRoutes);
-app.use('/api/pokemon', pokemonRoutes);
-app.use('/api/attacks', attackRoutes);
-app.use('/api/battles', battleRoutes);
+    this.app.get('/', (req: Request, res: Response) => {
+      res.render('index', { title: 'Accueil' });
+    });
 
-async function startServer() {
-  try {
-    await database.connect();
+    const trainerRoutes = new TrainerRoutes();
+    const pokemonRoutes = new PokemonRoutes();
+    const attackRoutes = new AttackRoutes();
+    const battleRoutes = new BattleRoutes();
 
-    app.listen(PORT, () => {
-      console.log(`
+    this.app.use('/trainers', trainerRoutes.getRouter());
+    this.app.use('/pokemon', pokemonRoutes.getRouter());
+    this.app.use('/attacks', attackRoutes.getRouter());
+    this.app.use('/battles', battleRoutes.getRouter());
+
+    this.app.use('/api/trainers', trainerRoutes.getRouter());
+    this.app.use('/api/pokemon', pokemonRoutes.getRouter());
+    this.app.use('/api/attacks', attackRoutes.getRouter());
+    this.app.use('/api/battles', battleRoutes.getRouter());
+  }
+
+  public async start(): Promise<void> {
+    try {
+      await this.database.connect();
+
+      this.app.listen(this.port, () => {
+        console.log(`
 ╔════════════════════════════════════════╗
 ║      🚀  Serveur Pokémon lancé         ║
-║      📡  http://localhost:${PORT}         ║
+║      📡  http://localhost:${this.port}         ║
 ║      🎮  Interface Web disponible      ║
 ║      📊  API REST disponible           ║
-║  📚  Docs: http://localhost:${PORT}/docs  ║
+║  📚  Docs: http://localhost:${this.port}/docs  ║
 ╚════════════════════════════════════════╝
       `);
-    });
-  } catch (error) {
-    console.error('Erreur au démarrage:', error);
-    process.exit(1); // Leave the process on error
+      });
+    } catch (error) {
+      console.error('Erreur au démarrage:', error);
+      process.exit(1);
+    }
+  }
+
+  public getApp(): Application {
+    return this.app;
   }
 }
 
-startServer();
-
-export default app;
+const server = new Server();
+server.start();

@@ -2,7 +2,11 @@ import Attack from '@/models/Attack';
 import AttackRepository from '@/repositories/AttackRepository';
 
 class AttackService {
-  constructor(private attackRepository: AttackRepository) {}
+  private attackRepository: AttackRepository;
+
+  constructor(attackRepository: AttackRepository) {
+    this.attackRepository = attackRepository;
+  }
 
   public async getAttackById(id: number): Promise<Attack | null> {
     return this.attackRepository.findById(id);

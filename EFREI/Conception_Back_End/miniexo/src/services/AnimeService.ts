@@ -2,6 +2,8 @@ import { Anime, IAnimeModel } from '@/models/Anime';
 import { IAnime } from '@/types/index';
 
 class AnimeService {
+  constructor() {}
+
   public async create(animeData: IAnime): Promise<IAnimeModel> {
     const anime = new Anime(animeData);
     return await anime.save();

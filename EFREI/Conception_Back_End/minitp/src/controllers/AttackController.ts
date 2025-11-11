@@ -3,7 +3,11 @@ import { Request, Response } from 'express';
 import { validationResult } from 'express-validator';
 
 class AttackController {
-  constructor(private attackService: AttackService) {}
+  private attackService: AttackService;
+
+  constructor(attackService: AttackService) {
+    this.attackService = attackService;
+  }
 
   /** GET /attacks */
   public getAll = async (req: Request, res: Response): Promise<void> => {

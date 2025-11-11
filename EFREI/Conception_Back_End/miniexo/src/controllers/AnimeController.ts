@@ -3,7 +3,11 @@ import { Request, Response } from 'express';
 import { validationResult } from 'express-validator';
 
 class AnimeController {
-  constructor(private animeService: AnimeService) {}
+  private animeService: AnimeService;
+
+  constructor(animeService: AnimeService) {
+    this.animeService = animeService;
+  }
 
   /** POST /animes */
   public create = async (req: Request, res: Response): Promise<void> => {

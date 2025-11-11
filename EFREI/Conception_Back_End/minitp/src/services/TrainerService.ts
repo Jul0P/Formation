@@ -2,7 +2,11 @@ import Trainer from '@/models/Trainer';
 import TrainerRepository from '@/repositories/TrainerRepository';
 
 class TrainerService {
-  constructor(private trainerRepository: TrainerRepository) {}
+  private trainerRepository: TrainerRepository;
+
+  constructor(trainerRepository: TrainerRepository) {
+    this.trainerRepository = trainerRepository;
+  }
 
   public async getTrainerById(id: number): Promise<Trainer | null> {
     return this.trainerRepository.findById(id);

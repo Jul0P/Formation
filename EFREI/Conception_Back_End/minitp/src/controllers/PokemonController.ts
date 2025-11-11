@@ -3,7 +3,11 @@ import { Request, Response } from 'express';
 import { validationResult } from 'express-validator';
 
 class PokemonController {
-  constructor(private pokemonService: PokemonService) {}
+  private pokemonService: PokemonService;
+
+  constructor(pokemonService: PokemonService) {
+    this.pokemonService = pokemonService;
+  }
 
   /** GET /pokemon */
   public getAll = async (req: Request, res: Response): Promise<void> => {
