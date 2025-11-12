@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ma première app testée avec Cypress</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Inscription</h1>
+    <form id="form">
+      <label>Nom : <input id="nom" type="text" /></label>
+      <label>Email : <input id="email" type="email" /></label>
+      <button id="envoyer">Envoyer</button>
+    </form>
+
+    <p id="message"></p>
+
+    <script>
+      const form = document.getElementById('form');
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        document.getElementById('message').textContent = 'Inscription réussie !';
+      });
+    </script>
+  </body>
+</html>
