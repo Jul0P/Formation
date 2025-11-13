@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Calculatrice</title>
+  </head>
+  <body>
+    <h1>Calculatrice</h1>
+
+    <input type="number" id="number1" />
+    <input type="number" id="number2" />
+
+    <button id="button-add">+</button>
+    <button id="button-subtract">-</button>
+    <button id="button-multiply">×</button>
+    <button id="button-divide">÷</button>
+
+    <p id="result"></p>
+
+    <script>
+      function calculate(operation) {
+        const num1 = parseFloat(document.getElementById('number1').value);
+        const num2 = parseFloat(document.getElementById('number2').value);
+        const resultDiv = document.getElementById('result');
+
+        let result;
+
+        if (operation === 'add') result = num1 + num2;
+
+        if (operation === 'subtract') result = num1 - num2;
+
+        if (operation === 'multiply') result = num1 * num2;
+
+        if (operation === 'divide') {
+          if (num2 === 0) {
+            resultDiv.textContent = 'Erreur';
+            return;
+          }
+          result = num1 / num2;
+        }
+
+        resultDiv.textContent = result;
+      }
+
+      document.getElementById('button-add').addEventListener('click', () => calculate('add'));
+      document.getElementById('button-subtract').addEventListener('click', () => calculate('subtract'));
+      document.getElementById('button-multiply').addEventListener('click', () => calculate('multiply'));
+      document.getElementById('button-divide').addEventListener('click', () => calculate('divide'));
+    </script>
+  </body>
+</html>
