@@ -1,0 +1,12 @@
+{
+  "name": "tdd",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/add.js",
+  "scripts": {
+    "test": "jest --json --outputFile=rapport_tests.json"
+  },
+  "devDependencies": {
+    "jest": "^30.2.0"
+  }
+}
