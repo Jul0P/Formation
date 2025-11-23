@@ -26,8 +26,13 @@ EFREI/
 │   ├── nodejs3/               # Express.js - API REST CRUD
 │   ├── nodejs4/               # Node.js + PostgreSQL
 │   ├── nodejs5/               # Express.js - Middlewares
-│   └── nodejs5.2/             # Express.js - Authentification avec PostgreSQL
-└── ProjetRenforcementTechnique/  # Jeu multitâche TypeScript
+│   ├── nodejs5.2/             # Express.js - Authentification avec PostgreSQL
+│   ├── miniexo/               # API REST Anime - Express.js + TypeScript
+│   ├── minitp/                # API REST Pokémon - Express.js + TypeScript + PostgreSQL
+│   └── StockLink_Core/        # API Gestion Entrepôt - Express + PostgreSQL + MongoDB
+├── ProjetRenforcementTechnique/  # Jeu multitâche TypeScript
+└── Test_Qualite/
+    └── minitp_test_qualite/   # Tests Jest & Cypress - API Pokémon
 ```
 
 ---
@@ -49,3 +54,42 @@ Deux implémentations d'une plateforme de gestion ESN démontrant les approches 
 Jeu multitâche progressif développé en TypeScript démontrant la gestion d'événements et la programmation orientée objet.
 
 📖 [Documentation complète](./EFREI/ProjetRenforcementTechnique/README.md)
+
+---
+
+### 3. 🔧 Conception Back-End
+
+#### **nodejs2** - Express.js Fundamentals
+Introduction à Express.js avec gestion des routes et query strings.
+
+#### **nodejs3** - API REST CRUD
+Création d'une API REST complète avec opérations CRUD.
+
+#### **nodejs4** - Node.js + PostgreSQL
+Intégration de PostgreSQL avec Node.js pour la persistance des données.
+
+#### **nodejs5** - Express.js Middlewares
+Implémentation et utilisation de middlewares personnalisés.
+
+#### **nodejs5.2** - Authentification PostgreSQL
+Système d'authentification sécurisé avec base de données PostgreSQL.
+
+#### **miniexo** - API REST Anime
+API TypeScript pour la gestion d'animes avec Express.js.
+
+#### **minitp** - API REST Pokémon
+📖 [Documentation complète](./EFREI/Conception_Back_End/minitp/README.md)
+
+API complète de gestion de combats Pokémon avec TypeScript, Express.js et PostgreSQL.
+
+#### **StockLink_Core** - Gestion d'Entrepôt
+📖 [Documentation complète](./EFREI/Conception_Back_End/StockLink_Core/README.md)
+
+API de gestion d'entrepôt avec architecture complète PostgreSQL + MongoDB, authentification JWT et tests.
+
+---
+
+### 4. ✅ Test & Qualité
+
+#### **minitp_test_qualite** - Tests Pokémon API
+Tests unitaires (Jest), d'intégration (Supertest) et E2E (Cypress) pour l'API Pokémon.
