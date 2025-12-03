@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  sandbox-web:
+    image: php:8.2-apache
+    container_name: upload-cv-sandbox
+    ports:
+      - '8080:80'
+    volumes:
+      - ./sandbox:/var/www/html
+      - ./sandbox/uploads:/var/www/html/uploads
+    environment:
+      - APACHE_DOCUMENT_ROOT=/var/www/html/public
+    command: >
+      bash -c "a2enmod rewrite &&
+               sed -i 's|/var/www/html|/var/www/html/public|g' /etc/apache2/sites-available/000-default.conf &&
+               apache2-foreground"

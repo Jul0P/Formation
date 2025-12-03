@@ -1,0 +1,29 @@
+# Ne pas commit les fichiers uploadés de test
+uploads/*
+!uploads/.gitkeep
+
+# Sandbox uploads
+sandbox/uploads/*
+!sandbox/uploads/.gitkeep
+
+# Logs Docker
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+venv/
+.env
